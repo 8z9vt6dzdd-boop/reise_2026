@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reiseführer Hongkong · Macau · Taiwan 2026</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Reiseführer">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#faf7f2;--card:#ffffff;--ink:#1f2328;--mute:#5d6570;--line:#e6dfd3;--chip:#efe8da;--accent:#b4472c;--ok:#2e7d5b;
+  --shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(60,40,20,.07);
+  --serif:Charter,"Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#15171a;--card:#1e2126;--ink:#eceff3;--mute:#a1a9b4;--line:#2d323a;--chip:#2a2e35;--accent:#e08a6c;--ok:#5cc28f;--shadow:0 1px 2px rgba(0,0,0,.4)}
+}
+:root[data-theme="dark"]{--bg:#15171a;--card:#1e2126;--ink:#eceff3;--mute:#a1a9b4;--line:#2d323a;--chip:#2a2e35;--accent:#e08a6c;--ok:#5cc28f;--shadow:0 1px 2px rgba(0,0,0,.4)}
+html{height:auto;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 124px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);-webkit-text-size-adjust:100%}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+
+/* Regionspalette */
+.reg-transit{--c1:#4f6bb0;--c2:#b9c7e6;--c3:#27324f;--sk1:#eaf0fb;--sk2:#c9d6f2;--rc:#4f6bb0}
+.reg-hk{--c1:#d23c2f;--c2:#f4b9a8;--c3:#2b2b3c;--sk1:#fdeee8;--sk2:#f7cdbd;--rc:#d23c2f}
+.reg-macau{--c1:#c99a1e;--c2:#f2dd9c;--c3:#3c3a2b;--sk1:#fbf4dc;--sk2:#f2e1a8;--rc:#b8870f}
+.reg-tw{--c1:#138a78;--c2:#a9ded3;--c3:#1d3b38;--sk1:#e5f6f2;--sk2:#b9e5db;--rc:#138a78}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .reg-transit{--sk1:#1e2740;--sk2:#2a3556}
+  :root:not([data-theme="light"]) .reg-hk{--sk1:#3a2220;--sk2:#4d2d27}
+  :root:not([data-theme="light"]) .reg-macau{--sk1:#3a3320;--sk2:#4a4128}
+  :root:not([data-theme="light"]) .reg-tw{--sk1:#16302c;--sk2:#1f423c}
+}
+:root[data-theme="dark"] .reg-transit{--sk1:#1e2740;--sk2:#2a3556}
+:root[data-theme="dark"] .reg-hk{--sk1:#3a2220;--sk2:#4d2d27}
+:root[data-theme="dark"] .reg-macau{--sk1:#3a3320;--sk2:#4a4128}
+:root[data-theme="dark"] .reg-tw{--sk1:#16302c;--sk2:#1f423c}
+
+/* Titel */
+.hero{padding:28px 0 8px}
+.hero small{letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-size:12px}
+.hero h1{font:700 clamp(28px,7vw,40px)/1.1 var(--serif);margin:6px 0 8px}
+.hero p{color:var(--mute);margin:0;max-width:60ch}
+
+/* Sticky Navigation */
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);margin:0 -16px;padding-left:16px;padding-right:16px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 0;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.dchip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:5px 10px;text-align:center;cursor:pointer;min-width:52px}
+.dchip b{display:block;font-size:15px;line-height:1.1}
+.dchip span{font-size:11px;color:var(--mute)}
+.dchip i{display:block;height:3px;border-radius:2px;background:var(--rc);margin-top:4px}
+.dchip.on{outline:2px solid var(--accent)}
+.dchip.today{background:var(--accent);color:#fff;border-color:var(--accent)}
+.dchip.today span{color:#fff}
+.tools{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding:0 0 8px;align-items:center;scrollbar-width:none}.tools::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;white-space:nowrap;border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grow{flex:1 0 8px}
+
+/* Übersicht */
+h2.sec{font:700 22px/1.2 var(--serif);margin:28px 0 10px}
+.ov{display:grid;gap:8px}
+.ovrow{display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;box-shadow:var(--shadow);text-align:left;width:100%}
+.ovrow .d{font-weight:700;line-height:1.1}
+.ovrow .d small{display:block;color:var(--mute);font-weight:500;font-size:12px}
+.ovrow .t{font-weight:600;line-height:1.25}
+.ovrow .t small{display:block;color:var(--mute);font-weight:400;font-size:13px}
+.ovrow .r{width:10px;height:36px;border-radius:5px;background:var(--rc)}
+
+/* Tag */
+.day{margin:26px 0 0;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.dhead{padding:16px 16px 12px;background:linear-gradient(180deg,var(--sk1),var(--card))}
+.dhead .dt{font-size:13px;color:var(--mute);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dhead .dt b{color:var(--rc)}
+.dhead h3{font:700 clamp(22px,5.4vw,28px)/1.15 var(--serif);margin:4px 0 2px}
+.dhead .pl{color:var(--mute);font-size:14px}
+.stay{margin-top:10px;display:inline-flex;gap:6px;align-items:center;font-size:13px;background:var(--chip);border-radius:10px;padding:5px 10px}
+.tipbox{margin:10px 0 0;font-size:14px;border-left:3px solid var(--rc);padding:2px 0 2px 10px;color:var(--ink)}
+.prog{height:4px;background:var(--line);border-radius:2px;margin-top:12px;overflow:hidden}
+.prog>i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+
+/* Tagesablauf auf einen Blick */
+.glance{list-style:none;margin:0;padding:6px 16px 10px}
+.glance li{display:grid;grid-template-columns:78px 1fr;gap:8px;padding:7px 0;border-top:1px dashed var(--line);cursor:pointer;align-items:baseline}
+.glance li:first-child{border-top:0}
+.glance .tm{font-variant-numeric:tabular-nums;font-size:13px;color:var(--mute)}
+.glance .nm{font-weight:600;font-size:15px;line-height:1.3}
+.glance .nm small{font-weight:400;color:var(--mute);margin-left:4px}
+.glance li.star .nm:before{content:"★ ";color:var(--rc)}
+.glance li.done .nm{text-decoration:line-through;opacity:.55}
+.k{display:inline-block;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:1px 6px;margin-right:6px;background:var(--chip);color:var(--mute);vertical-align:1px}
+.k-f .k,.k.f{background:#fde9c8;color:#7a4b00}
+.k-m .k,.k.m{background:#dfe8f7;color:#2b4670}
+.k-h .k,.k.h{background:#e6e0f3;color:#473a73}
+.k-s .k,.k.s{background:#dff1e7;color:#1d5a3a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .k.f,:root:not([data-theme="light"]) .k-f .k{background:#4b3a1a;color:#f5d28f}:root:not([data-theme="light"]) .k.m,:root:not([data-theme="light"]) .k-m .k{background:#25344d;color:#b9d0f5}:root:not([data-theme="light"]) .k.h,:root:not([data-theme="light"]) .k-h .k{background:#33294f;color:#cfc2f2}:root:not([data-theme="light"]) .k.s,:root:not([data-theme="light"]) .k-s .k{background:#1f3d2f;color:#a9e2c2}}
+:root[data-theme="dark"] .k.f,:root[data-theme="dark"] .k-f .k{background:#4b3a1a;color:#f5d28f}
+:root[data-theme="dark"] .k.m,:root[data-theme="dark"] .k-m .k{background:#25344d;color:#b9d0f5}
+:root[data-theme="dark"] .k.h,:root[data-theme="dark"] .k-h .k{background:#33294f;color:#cfc2f2}
+:root[data-theme="dark"] .k.s,:root[data-theme="dark"] .k-s .k{background:#1f3d2f;color:#a9e2c2}
+
+/* Stationen */
+details.more{border-top:1px solid var(--line)}
+details.more>summary{list-style:none;cursor:pointer;padding:12px 16px;font-weight:600;display:flex;align-items:center;gap:8px;color:var(--accent)}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary:after{content:"▾";margin-left:auto;transition:transform .2s}
+details.more[open]>summary:after{transform:rotate(180deg)}
+.stations{padding:2px 12px 14px;display:grid;gap:12px}
+.st{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.st>summary{list-style:none;cursor:pointer;display:block}
+.st>summary::-webkit-details-marker{display:none}
+.art{height:92px;background:linear-gradient(180deg,var(--sk1),var(--sk2));position:relative;overflow:hidden}
+.art svg{width:100%;height:100%;display:block}
+.sthead{padding:10px 12px 12px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:start}
+.sthead .tm{grid-column:1/-1;font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+.sthead h4{margin:0;font:700 17px/1.25 var(--serif)}
+.sthead .one{grid-column:1/-1;color:var(--mute);font-size:14px;margin:0}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--mute);cursor:pointer;padding:4px 6px;border-radius:8px;border:1px solid var(--line);background:var(--chip);user-select:none}
+.chk input{accent-color:var(--ok);width:16px;height:16px;margin:0}
+.body{padding:2px 14px 14px;border-top:1px solid var(--line)}
+.body h5{margin:12px 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--rc)}
+.body p{margin:0 0 4px}
+.body ul{margin:0;padding-left:20px}
+.body li{margin:2px 0}
+.body .warn li::marker{color:#c0392b}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.links a{text-decoration:none;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:6px 12px;border-radius:999px;font-size:13px}
+.st.hide,.glance li.hide{display:none}
+.st:not([open])>summary .art{opacity:.95}
+.st[open]>summary .sthead h4{color:var(--accent)}
+
+/* Praktisches */
+.info{display:grid;gap:10px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.box>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.box>summary::-webkit-details-marker{display:none}
+.box>summary:after{content:"▾";margin-left:auto}
+.box[open]>summary:after{transform:rotate(180deg)}
+.box .in{padding:0 16px 14px}
+.box ul{margin:6px 0 0;padding-left:20px}
+.box li{margin:3px 0}
+table.stays{width:100%;border-collapse:collapse;font-size:14px}
+table.stays td,table.stays th{border-top:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+table.stays th{font-size:12px;color:var(--mute);font-weight:600}
+.foot{color:var(--mute);font-size:13px;margin:30px 0 0}
+.top{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:30;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);font-size:18px;cursor:pointer;display:none}
+.top.show{display:block}
+@media (min-width:700px){.art{height:120px}.glance li{grid-template-columns:96px 1fr}}
+@media print{.bar,.top,.tools{display:none!important}details>*{display:block!important}}
+
+
+/* PWA / iPhone */
+html{-webkit-tap-highlight-color:transparent}
+button,.dchip,.pill,.ovrow,.glance li,summary{touch-action:manipulation}
+.pill{min-height:36px;padding:7px 14px}
+.dchip{min-height:50px}
+.chk{min-height:36px;padding:6px 10px}
+.chk input{width:20px;height:20px}
+.glance li{padding:10px 0}
+#pwa-note{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 14px;font-size:14px;box-shadow:var(--shadow);display:none}
+#pwa-note button{float:right;margin-left:10px;border:0;background:transparent;color:inherit;font-size:20px;line-height:1}
+#offline-ok{display:none;margin:6px 0 0;font-size:13px;color:var(--ok)}
+@media (display-mode:standalone){#pwa-note{display:none!important}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<small>Persönlicher Reiseführer · 12.–31. Oktober 2026</small>
+<h1>Hongkong · Macau · Taiwan</h1>
+<p>Marvin &amp; Benedict. 20 Tage von Düsseldorf über Doha nach Hongkong, Macau und rund um Taiwan. Oben seht ihr jeden Tag auf einen Blick. Ein Tipp auf eine Zeile oder auf „Stationen &amp; Details“ öffnet Beschreibung, Tipps und Warnhinweise. Die Illustrationen sind gezeichnet. Echte Fotos findet ihr hinter „Fotos ansehen“ bei jeder Station (braucht Internet).</p>
+<p id="offline-ok">✓ Offline bereit: Der Reiseführer funktioniert jetzt auch ohne Netz.</p>
+</header>
+<nav class="bar" aria-label="Tage">
+<div class="chips" id="chips"></div>
+<div class="tools">
+<button class="pill" data-f="all" aria-pressed="true">Alles</button>
+<button class="pill" data-f="star" aria-pressed="false">★ Highlights</button>
+<button class="pill" data-f="s" aria-pressed="false">Sehen</button>
+<button class="pill" data-f="f" aria-pressed="false">Essen</button>
+<button class="pill" data-f="m" aria-pressed="false">Fahrt</button>
+<span class="grow"></span>
+<button class="pill" data-act="today">Heute</button>
+<button class="pill" data-act="open">Alles auf</button>
+<button class="pill" data-act="close">Alles zu</button>
+<button class="pill" data-act="theme" aria-label="Hell oder dunkel">◐</button>
+</div>
+</nav>
+<main id="app"></main>
+<p class="foot">Zeiten und Fahrtdauern sind Richtwerte. Wo „nicht verifiziert“ steht, vor Ort oder kurz vorher prüfen. Öffnungszeiten, Sperrungen und Preise können sich ändern.</p>
+</div>
+<div id="pwa-note"><button aria-label="Schließen">×</button>Für die Offline-Nutzung: unten auf <b>Teilen</b> tippen, dann <b>Zum Home-Bildschirm</b>.</div>
+<button class="top" id="totop" aria-label="Nach oben">↑</button>
+<script>
+const V='viewBox="0 0 320 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true"';
+const sun=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="var(--c1)" opacity=".9"/>`;
+const waves=(y)=>`<path d="M0 ${y} q20 -9 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 V110 H0z" fill="var(--c2)"/>`;
+const ART={
+skyline:()=>`<svg ${V}>${sun(268,26,13)}<g fill="var(--c3)"><rect x="18" y="44" width="22" height="40"/><rect x="46" y="26" width="18" height="58"/><rect x="70" y="48" width="26" height="36"/><rect x="102" y="12" width="20" height="72"/><rect x="128" y="36" width="24" height="48"/><rect x="158" y="52" width="20" height="32"/><rect x="184" y="28" width="22" height="56"/><rect x="212" y="46" width="26" height="38"/><rect x="244" y="20" width="18" height="64"/><rect x="268" y="50" width="34" height="34"/></g>${waves(84)}<g fill="var(--c1)" opacity=".7"><rect x="108" y="22" width="3" height="3"/><rect x="114" y="30" width="3" height="3"/><rect x="250" y="32" width="3" height="3"/></g></svg>`,
+ferry:()=>`<svg ${V}>${sun(60,28,14)}${waves(78)}<path d="M108 68 h108 l-16 20 h-76z" fill="var(--c3)"/><rect x="138" y="48" width="48" height="20" fill="var(--c1)"/><rect x="156" y="36" width="10" height="12" fill="var(--c3)"/><g fill="var(--c2)"><rect x="146" y="54" width="8" height="7"/><rect x="160" y="54" width="8" height="7"/><rect x="174" y="54" width="8" height="7"/></g></svg>`,
+temple:()=>`<svg ${V}><rect y="94" width="320" height="16" fill="var(--c3)" opacity=".35"/><path d="M52 62 q108 -52 216 0 l-20 12 h-176z" fill="var(--c1)"/><path d="M96 40 q64 -34 128 0 l-14 9 h-100z" fill="var(--c1)"/><rect x="82" y="74" width="156" height="22" fill="var(--c3)"/><rect x="148" y="78" width="24" height="18" fill="var(--c2)"/><g fill="var(--c2)"><rect x="96" y="78" width="10" height="18"/><rect x="214" y="78" width="10" height="18"/></g>${sun(262,22,9)}</svg>`,
+market:()=>`<svg ${V}><g fill="var(--c1)"><circle cx="30" cy="16" r="8"/><circle cx="90" cy="12" r="8"/><circle cx="150" cy="16" r="8"/><circle cx="210" cy="12" r="8"/><circle cx="270" cy="16" r="8"/></g><path d="M0 22 q80 12 160 0 t160 0" stroke="var(--c3)" fill="none" stroke-width="2"/><path d="M20 58 h120 v16 h-120z" fill="var(--c1)"/><path d="M180 58 h120 v16 h-120z" fill="var(--c2)"/><g fill="var(--c3)"><rect x="26" y="74" width="108" height="30"/><rect x="186" y="74" width="108" height="30"/></g><g fill="var(--c2)"><circle cx="50" cy="86" r="6"/><circle cx="76" cy="86" r="6"/><circle cx="102" cy="86" r="6"/><circle cx="210" cy="86" r="6"/><circle cx="236" cy="86" r="6"/><circle cx="262" cy="86" r="6"/></g></svg>`,
+noodle:()=>`<svg ${V}><path d="M96 56 h128 a64 42 0 0 1 -128 0z" fill="var(--c1)"/><ellipse cx="160" cy="56" rx="64" ry="11" fill="var(--c2)"/><path d="M130 52 q10 -6 20 0 t20 0 t20 0" stroke="var(--c3)" fill="none" stroke-width="3"/><g stroke="var(--c3)" fill="none" stroke-width="3" stroke-linecap="round" opacity=".6"><path d="M130 38 q-8 -10 0 -20"/><path d="M160 38 q-8 -10 0 -20"/><path d="M190 38 q-8 -10 0 -20"/></g><rect x="206" y="14" width="3" height="46" fill="var(--c3)" transform="rotate(20 206 14)"/><rect x="216" y="14" width="3" height="46" fill="var(--c3)" transform="rotate(20 216 14)"/></svg>`,
+mountain:()=>`<svg ${V}>${sun(250,28,12)}<path d="M0 80 L70 28 L120 64 L180 18 L250 70 L320 40 V110 H0z" fill="var(--c3)" opacity=".85"/><path d="M0 92 L60 58 L110 82 L170 52 L230 86 L320 62 V110 H0z" fill="var(--c1)" opacity=".75"/><rect y="70" width="320" height="10" fill="var(--c2)" opacity=".6"/><rect y="88" width="320" height="8" fill="var(--c2)" opacity=".5"/></svg>`,
+coast:()=>`<svg ${V}>${sun(240,30,14)}<path d="M0 30 L90 22 L130 60 L100 110 H0z" fill="var(--c3)"/>${waves(84)}<path d="M20 90 q20 -8 40 0" stroke="#fff" fill="none" stroke-width="2" opacity=".7"/></svg>`,
+lighthouse:()=>`<svg ${V}>${sun(256,26,12)}${waves(90)}<path d="M146 90 L154 26 h12 L174 90z" fill="var(--c1)"/><path d="M150 56 h20 M148 72 h24" stroke="var(--c2)" stroke-width="7"/><rect x="150" y="16" width="20" height="10" fill="var(--c3)"/><path d="M170 21 L300 8 V34z" fill="var(--c1)" opacity=".25"/></svg>`,
+onsen:()=>`<svg ${V}><g fill="var(--c3)"><path d="M20 90 q30 -22 70 -6 l-8 22 h-62z"/><path d="M250 90 q20 -18 50 -8 l-6 24 h-50z"/></g><ellipse cx="160" cy="88" rx="96" ry="14" fill="var(--c2)"/><g stroke="var(--c1)" fill="none" stroke-width="4" stroke-linecap="round" opacity=".7"><path d="M120 72 q-10 -14 0 -28 t0 -28"/><path d="M160 70 q-10 -14 0 -28 t0 -28"/><path d="M200 72 q-10 -14 0 -28 t0 -28"/></g></svg>`,
+museum:()=>`<svg ${V}><rect y="96" width="320" height="14" fill="var(--c3)" opacity=".35"/><path d="M70 48 L160 14 L250 48z" fill="var(--c1)"/><rect x="74" y="48" width="172" height="8" fill="var(--c3)"/><g fill="var(--c2)"><rect x="86" y="58" width="14" height="36"/><rect x="116" y="58" width="14" height="36"/><rect x="146" y="58" width="14" height="36"/><rect x="176" y="58" width="14" height="36"/><rect x="206" y="58" width="14" height="36"/></g><rect x="70" y="94" width="180" height="6" fill="var(--c3)"/></svg>`,
+lake:()=>`<svg ${V}>${sun(246,26,12)}<path d="M0 62 L60 34 L120 58 L190 30 L260 56 L320 40 V80 H0z" fill="var(--c3)" opacity=".8"/><rect y="70" width="320" height="40" fill="var(--c2)"/><path d="M130 88 h60 l-10 10 h-40z" fill="var(--c1)"/><path d="M160 88 V68 L180 88z" fill="var(--c3)"/><path d="M20 98 q20 -6 40 0 t40 0" stroke="#fff" fill="none" stroke-width="2" opacity=".6"/></svg>`,
+tea:()=>`<svg ${V}>${sun(260,24,11)}<path d="M0 70 q80 -26 160 -6 t160 -12 V110 H0z" fill="var(--c1)" opacity=".8"/><path d="M0 86 q80 -22 160 -4 t160 -10 V110 H0z" fill="var(--c3)" opacity=".85"/><g stroke="var(--c2)" fill="none" stroke-width="2" opacity=".7"><path d="M0 78 q80 -22 160 -4 t160 -10"/><path d="M0 94 q80 -20 160 -4 t160 -8"/></g></svg>`,
+road:()=>`<svg ${V}>${sun(262,24,12)}<path d="M0 64 L70 36 L130 58 L200 28 L280 60 L320 46 V110 H0z" fill="var(--c3)" opacity=".7"/><path d="M-10 108 C80 80 100 96 160 76 S250 70 330 52" stroke="var(--c3)" fill="none" stroke-width="22"/><path d="M-10 108 C80 80 100 96 160 76 S250 70 330 52" stroke="var(--c2)" fill="none" stroke-width="2" stroke-dasharray="10 8"/><g transform="translate(150 66)"><rect width="28" height="11" rx="3" fill="var(--c1)"/><rect x="6" y="-5" width="15" height="7" rx="2" fill="var(--c1)"/><circle cx="7" cy="12" r="3" fill="var(--c3)"/><circle cx="21" cy="12" r="3" fill="var(--c3)"/></g></svg>`,
+plane:()=>`<svg ${V}><g fill="var(--c2)" opacity=".8"><ellipse cx="60" cy="86" rx="60" ry="14"/><ellipse cx="250" cy="90" rx="70" ry="14"/></g><g transform="translate(88 28) rotate(-12)"><path d="M0 24 L120 20 Q144 22 148 28 Q144 34 120 36 L0 34z" fill="var(--c3)"/><path d="M50 26 L28 2 L40 2 L78 24z" fill="var(--c1)"/><path d="M50 34 L28 58 L40 58 L78 36z" fill="var(--c1)"/><path d="M0 24 L-8 8 L4 8 L16 24z" fill="var(--c1)"/></g></svg>`,
+pagoda:()=>`<svg ${V}><rect y="96" width="320" height="14" fill="var(--c3)" opacity=".35"/><g fill="var(--c1)"><path d="M120 36 q40 -22 80 0 l-8 8 h-64z"/><path d="M112 58 q48 -26 96 0 l-8 8 h-80z"/><path d="M104 80 q56 -30 112 0 l-8 8 h-96z"/></g><g fill="var(--c3)"><rect x="140" y="44" width="40" height="14"/><rect x="134" y="66" width="52" height="14"/><rect x="128" y="88" width="64" height="8"/></g><rect x="156" y="14" width="8" height="14" fill="var(--c3)"/>${sun(262,26,10)}</svg>`,
+buddha:()=>`<svg ${V}><rect y="98" width="320" height="12" fill="var(--c3)" opacity=".35"/><g fill="var(--c1)"><circle cx="160" cy="26" r="13"/><path d="M130 98 q-4 -36 14 -58 h32 q18 22 14 58z"/><path d="M118 98 q42 -22 84 0z" fill="var(--c3)"/></g><g fill="var(--c2)" opacity=".8"><rect x="52" y="60" width="18" height="38"/><rect x="250" y="60" width="18" height="38"/><path d="M48 60 l13 -16 l13 16z"/><path d="M246 60 l13 -16 l13 16z"/></g></svg>`,
+beach:()=>`<svg ${V}>${sun(236,34,18)}<rect y="62" width="320" height="48" fill="var(--c2)"/><path d="M0 72 q40 -8 80 0 t80 0 t80 0 t80 0 V110 H0z" fill="var(--c1)" opacity=".35"/><path d="M70 100 q4 -40 10 -56" stroke="var(--c3)" stroke-width="4" fill="none"/><g fill="var(--c3)"><path d="M80 44 q-30 -10 -42 8 q22 -12 42 -2z"/><path d="M80 44 q30 -14 44 4 q-24 -10 -44 0z"/><path d="M80 44 q-8 -22 -26 -22 q16 4 26 22z"/></g></svg>`,
+train:()=>`<svg ${V}><rect y="86" width="320" height="24" fill="var(--c3)" opacity=".4"/><path d="M0 92 H320" stroke="var(--c3)" stroke-width="3"/><g><rect x="40" y="46" width="240" height="38" rx="14" fill="var(--c1)"/><g fill="var(--c2)"><rect x="58" y="54" width="30" height="16" rx="3"/><rect x="98" y="54" width="30" height="16" rx="3"/><rect x="138" y="54" width="30" height="16" rx="3"/><rect x="178" y="54" width="30" height="16" rx="3"/><rect x="218" y="54" width="42" height="16" rx="3"/></g><circle cx="80" cy="88" r="6" fill="var(--c3)"/><circle cx="240" cy="88" r="6" fill="var(--c3)"/></g></svg>`,
+bed:()=>`<svg ${V}><rect y="94" width="320" height="16" fill="var(--c3)" opacity=".35"/><rect x="70" y="52" width="180" height="34" rx="6" fill="var(--c1)"/><rect x="70" y="36" width="14" height="58" fill="var(--c3)"/><rect x="96" y="44" width="52" height="16" rx="8" fill="var(--c2)"/><rect x="70" y="66" width="180" height="8" fill="var(--c3)" opacity=".4"/><rect x="250" y="62" width="10" height="32" fill="var(--c3)"/>${sun(264,24,10)}</svg>`,
+facade:()=>`<svg ${V}><rect y="98" width="320" height="12" fill="var(--c3)" opacity=".35"/><path d="M100 98 V46 L160 14 L220 46 V98z" fill="var(--c1)"/><path d="M100 98 V46 H220" fill="none"/><g fill="var(--c2)"><rect x="124" y="58" width="16" height="24" rx="8"/><rect x="152" y="58" width="16" height="24" rx="8"/><rect x="180" y="58" width="16" height="24" rx="8"/><rect x="146" y="26" width="28" height="18" rx="9"/></g><g fill="var(--c3)"><path d="M90 98 h140 v-6 h-130z"/><path d="M80 104 h160 v-6 h-150z"/></g></svg>`,
+plaza:()=>`<svg ${V}><rect y="60" width="320" height="50" fill="var(--c2)"/><g stroke="var(--c3)" fill="none" stroke-width="3" opacity=".7"><path d="M0 74 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/><path d="M0 90 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/></g><g fill="var(--c1)"><rect x="20" y="26" width="90" height="36"/><rect x="130" y="16" width="60" height="46"/><rect x="210" y="30" width="90" height="32"/></g><g fill="var(--c3)" opacity=".7"><rect x="34" y="36" width="10" height="14"/><rect x="58" y="36" width="10" height="14"/><rect x="82" y="36" width="10" height="14"/><rect x="146" y="28" width="12" height="18"/><rect x="224" y="40" width="10" height="12"/><rect x="250" y="40" width="10" height="12"/><rect x="276" y="40" width="10" height="12"/></g></svg>`,
+rocks:()=>`<svg ${V}>${sun(260,24,12)}<rect y="84" width="320" height="26" fill="var(--c2)"/><g fill="var(--c3)"><path d="M60 90 V56 q-22 -2 -24 -14 q24 -12 48 0 q-2 12 -24 14 V90z"/><path d="M140 92 V40 q-30 -2 -32 -16 q32 -14 64 0 q-2 14 -32 16 V92z"/><path d="M230 90 V62 q-18 -2 -20 -12 q20 -10 40 0 q-2 10 -20 12 V90z"/></g><g fill="var(--c1)" opacity=".5"><rect x="136" y="26" width="8" height="6" rx="3"/></g></svg>`,
+sunrise:()=>`<svg ${V}><path d="M120 84 a40 40 0 0 1 80 0z" fill="var(--c1)"/><g stroke="var(--c1)" stroke-width="3" stroke-linecap="round" opacity=".6"><path d="M160 30 v-12"/><path d="M118 44 l-8 -8"/><path d="M202 44 l8 -8"/></g><g fill="var(--c2)"><ellipse cx="70" cy="90" rx="90" ry="14"/><ellipse cx="260" cy="94" rx="90" ry="14"/><ellipse cx="170" cy="98" rx="110" ry="12"/></g></svg>`,
+bridge:()=>`<svg ${V}>${sun(252,26,12)}${waves(80)}<g fill="none" stroke="var(--c1)" stroke-width="8"><path d="M20 78 q30 -34 60 0"/><path d="M80 78 q30 -34 60 0"/><path d="M140 78 q30 -34 60 0"/></g><rect x="14" y="76" width="200" height="6" fill="var(--c3)"/><path d="M214 82 q18 -46 46 -26 q14 14 8 26z" fill="var(--c3)"/></svg>`
+};
+
+const DAYS=[];
+const REG={transit:'Anreise & Transit',hk:'Hongkong',macau:'Macau',tw:'Taiwan'};
+const KIND={s:'Sehen',f:'Essen',m:'Fahrt',h:'Unterkunft'};
+const DEF_ART={s:'temple',f:'noodle',m:'road',h:'bed'};
+const WD=['So','Mo','Di','Mi','Do','Fr','Sa'];
+const MON=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function T(t,n,k,a,w,d,x,q){return{t,n,k,a,w,d:d||[],x:x||[],q:q||''}}
+function D(id,date,title,place,reg,stay,tip,st){DAYS.push({id,date,title,place,reg,stay,tip,st})}
+
+/* lokaler Speicher (nur Komfort, mit try/catch) */
+let DONE={};
+try{DONE=JSON.parse(localStorage.getItem('rf-done')||'{}')}catch(e){DONE={}}
+function saveDone(){try{localStorage.setItem('rf-done',JSON.stringify(DONE))}catch(e){}}
+
+function fmt(date){const d=new Date(date+'T12:00:00');return{wd:WD[d.getDay()],d:d.getDate(),m:MON[d.getMonth()]}}
+function firstSentence(s){const m=s.match(/^.*?[.!?](\s|$)/);return m?m[0].trim():s}
+const mapUrl=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const imgUrl=q=>'https://www.google.com/search?tbm=isch&q='+encodeURIComponent(q);
+
+function render(){
+  const root=$('#app');
+  let h='';
+  /* Übersicht */
+  h+='<h2 class="sec" id="ueberblick">Die Reise auf einen Blick</h2><div class="ov">';
+  DAYS.forEach((d,i)=>{const f=fmt(d.date);
+    h+=`<button class="ovrow reg-${d.reg}" data-go="${d.id}"><span class="d">${f.wd} ${f.d}.<small>${f.m} · Tag ${i+1}</small></span><span class="t">${esc(d.title)}<small>${esc(d.place)}</small></span><span class="r"></span></button>`});
+  h+='</div>';
+  /* Tage */
+  DAYS.forEach((d,i)=>{
+    const f=fmt(d.date);
+    h+=`<section class="day reg-${d.reg}" id="${d.id}" data-date="${d.date}">
+<div class="dhead"><div class="dt"><b>${f.wd}, ${f.d}. ${f.m}</b><span>Tag ${i+1} von ${DAYS.length}</span><span>· ${REG[d.reg]}</span></div>
+<h3>${esc(d.title)}</h3><div class="pl">${esc(d.place)}</div>
+<div class="stay">🛏 ${esc(d.stay)}</div>
+${d.tip?`<p class="tipbox">${esc(d.tip)}</p>`:''}
+<div class="prog"><i></i></div></div>
+<ul class="glance">`;
+    d.st.forEach((s,j)=>{const sid=d.id+'-'+j;const star=s.n.startsWith('★ ');const name=star?s.n.slice(2):s.n;
+      h+=`<li class="k-${s.k}${star?' star':''}" data-k="${s.k}" data-star="${star?1:0}" data-st="${sid}"><span class="tm">${esc(s.t)}</span><span class="nm"><span class="k">${KIND[s.k]}</span>${esc(name)}</span></li>`});
+    h+=`</ul><details class="more"><summary>Stationen &amp; Details (${d.st.length})</summary><div class="stations">`;
+    d.st.forEach((s,j)=>{const sid=d.id+'-'+j;const star=s.n.startsWith('★ ');const name=star?s.n.slice(2):s.n;
+      const art=(ART[s.a]||ART[DEF_ART[s.k]])();
+      h+=`<details class="st k-${s.k}" id="${sid}" data-k="${s.k}" data-star="${star?1:0}"><summary><div class="art">${art}</div>
+<div class="sthead"><span class="tm">${esc(s.t)}</span><h4>${star?'★ ':''}${esc(name)}</h4><label class="chk" data-id="${sid}"><input type="checkbox" ${DONE[sid]?'checked':''} tabindex="-1"> erledigt</label><p class="one">${esc(firstSentence(s.w))}</p></div></summary>
+<div class="body"><h5>Was ist das?</h5><p>${esc(s.w)}</p>`;
+      if(s.d.length)h+=`<h5>Das solltet ihr tun &amp; sehen</h5><ul>${s.d.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+      if(s.x.length)h+=`<h5>Worauf ihr achten solltet</h5><ul class="warn">${s.x.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+      if(s.q)h+=`<div class="links"><a href="${mapUrl(s.q)}" target="_blank" rel="noopener">📍 Karte</a><a href="${imgUrl(s.q)}" target="_blank" rel="noopener">🖼 Fotos ansehen</a></div>`;
+      h+='</div></details>'});
+    h+='</div></details></section>';
+  });
+  h+=INFO;
+  root.innerHTML=h;
+}
+
+const INFO=`<h2 class="sec" id="praktisch">Gut zu wissen</h2><div class="info">
+<details class="box"><summary>💶 Geld, Apps &amp; Alltag</summary><div class="in"><ul>
+<li><b>Währungen:</b> Hongkong-Dollar (HKD) und Taiwan-Dollar (TWD). In Macau gilt die Pataca (MOP), HKD wird dort meist ebenfalls genommen (vor Ort prüfen). Karten gehen oft, Garküchen und Nachtmärkte sind aber meist Bargeld-Orte.</li>
+<li><b>Bargeld:</b> in Taiwan an 7-Eleven- oder FamilyMart-Automaten abheben und die Umrechnung in Euro ablehnen. Alishan Hinoki B&amp;B nimmt nur Bargeld (7.600 TWD).</li>
+<li><b>Karten:</b> Octopus (Hongkong) und EasyCard (Taiwan) für Bahn, Bus und Kleinkram. Aufladen geht oft nur mit Bargeld.</li>
+<li><b>Apps:</b> Google Maps (Offline-Karten laden), Google Übersetzer (Chinesisch offline), LINE (Kontakt zu Unterkünften), MTR Mobile (Hongkong), Klook, Wetter-/Taifunwarnung (Central Weather Administration Taiwan, Hong Kong Observatory).</li>
+<li><b>Trinkgeld:</b> in Taiwan nicht üblich. In Hongkong steht oft schon ein Servicezuschlag von ca. 10 % auf der Rechnung.</li>
+<li><b>Strom:</b> Hongkong Steckertyp G (220 V), Taiwan Typ A/B (110 V). Beide Adapter einpacken.</li>
+<li><b>Zeit:</b> Hongkong und Taiwan UTC+8, bis 24.10. sechs Stunden vor Deutschland. Am 25.10. endet bei uns die Sommerzeit, danach sind es sieben Stunden.</li>
+<li><b>Unterwegs:</b> In MRT/MTR nicht essen oder trinken (Bußgeld). Rolltreppen: rechts stehen, links gehen. Leitungswasser nicht trinken, Wasser kaufen. In manchen Toiletten gehört das Papier in den Eimer, Schilder beachten.</li>
+<li><b>Mietwagen:</b> Rechtsverkehr, viele Roller. Vor jedem Abbiegen und Spurwechsel Schulterblick. Mautabrechnung beim Mietwagen vorab erfragen.</li>
+<li><b>Einfuhr nach Taiwan:</b> keine Fleisch- oder Wurstprodukte, kein frisches Obst (Bußgeld).</li>
+<li><b>Medikamente:</b> Originalpackungen, Attest im Handgepäck. Mounjaro ungekühlt maximal 21 Tage unter 30 °C, Kühltasche nutzen.</li>
+<li><b>Einreise:</b> Deutsche sind in Hongkong, Macau und Taiwan jeweils 90 Tage visumfrei. Hongkong verlangt laut Hongkonger Büro in Berlin einen Pass, der nach der geplanten Ausreise noch 6 Monate gültig ist, Taiwan 6 Monate bei Einreise (Konsularamt).</li>
+<li><b>Katar-Transit:</b> Das neue Genehmigungssystem des Gesundheitsministeriums (seit 5.8.2026) betrifft Narkotika und Psychotropika (140 gelistete Medikamente). Sertralin, Candesartan, L-Thyrox, Rifaximin, Azithromycin und Tirzepatid gehören nach der internationalen Einstufung nicht dazu (meine Einschätzung, Liste nicht Wort für Wort geprüft). Originalpackungen und Attest reichen daher voraussichtlich.</li>
+<li><b>Notruf:</b> Taiwan 110 (Polizei), 119 (Feuerwehr/Rettung). Hongkong und Macau 999.</li></ul></div></details>
+<details class="box"><summary>🔎 Prüfstand der Informationen (12.10.2026)</summary><div class="in"><ul>
+<li><b>Bestätigt durch offizielle Quellen:</b> Visumfreiheit für Deutsche (Hongkong, Macau, Taiwan, je 90 Tage), Passgültigkeit, Taiwan Arrival Card (innerhalb von 7 Tagen vor Ankunft), Peak-Tram-Zeiten, Alishan-Waldbahn (Reservierung, Sunrise-Zug), Fo Guang Shan (Öffnungstage), Cathay-Light-Tarif (1 Gepäckstück à 23 kg), Katar-Genehmigungssystem (nur Narkotika und Psychotropika).</li>
+<li><b>Aus mehreren Drittquellen:</b> Fährfahrplan und Tarife Hongkong–Macau, Öffnungszeiten A-Ma-Tempel und Palastmuseum, Taipei-101-Ticketlogistik, Sperrungen im Taroko-Park, Lalu-Insel, Tarife Airport Express und Airport MRT.</li>
+<li><b>Weiter offen:</b> Yehliu-Öffnungszeiten, Eluanbi, Baxiandong, Shitiping, Sanxiantai, Chenggong-Markt, Mautabrechnung beim Mietwagen, Leye–Alishan-Station-Entfernung, Fenchihu-Lage, Öffnungszeiten einzelner Restaurants, Symphony of Lights (Einstellung angekündigt).</li></ul></div></details>
+<details class="box"><summary>🛏 Unterkünfte im Überblick</summary><div class="in"><table class="stays"><tr><th>Nächte</th><th>Unterkunft</th><th>Check-in</th></tr>
+<tr><td>13.–16.10.</td><td><b>Kerry Hotel Hong Kong</b><br>38 Hung Luen Road, Hung Hom Bay, Kowloon</td><td>ab 15:00, Zahlung im Hotel</td></tr>
+<tr><td>16.–20.10.</td><td><b>Humble Boutique Hotel</b><br>No. 116, Songjiang Road, Zhongshan, Taipeh</td><td>ab 15:00, Frühstück inkl.</td></tr>
+<tr><td>20.–22.10.</td><td><b>W house</b><br>No. 47-1, Fuguo Road, Hualien City</td><td>15:00–19:00, Rezeption nur bis 18:00</td></tr>
+<tr><td>22.–24.10.</td><td><b>Tai Dong Jin Kuai Homestay</b><br>No. 391, Gengsheng Road, Taitung</td><td>15:00–23:00, Frühstück inkl.</td></tr>
+<tr><td>24.–25.10.</td><td><b>Hotel dùa Kenting</b><br>No. 5, Wenhua Lane, Kending Road, Kenting</td><td>15:00–00:00</td></tr>
+<tr><td>25.–27.10.</td><td><b>InterContinental Kaohsiung</b><br>No. 33, Xinguang Rd., Qianzhen Dist.</td><td>ab 15:00, Ausweis + Kreditkarte, Kaution 12.000 TWD</td></tr>
+<tr><td>27.–28.10.</td><td><b>Alishan Hinoki B&amp;B</b><br>No. 114-1, 4th Neighborhood, Leye, Alishan</td><td>15:00–19:00, nur Bargeld</td></tr>
+<tr><td>28.–29.10.</td><td><b>Sun Moon Inn</b><br>No. 216, Zhongshan Road, Shuishe, Yuchi</td><td>15:30–19:00, Parkplatz vorab reservieren</td></tr>
+<tr><td>29.–30.10.</td><td><b>arTree hotel</b><br>No. 76, Sec. 3, Bade Road, Songshan, Taipeh</td><td>ab 16:00, Frühstück inkl.</td></tr></table>
+<p style="font-size:13px;color:var(--mute);margin:8px 0 0">Buchungsnummern, PINs und Telefonnummern stehen aus Datenschutzgründen nicht hier, sondern in eurer Excel-Datei.</p></div></details>
+<details class="box" open><summary>✅ Das gibt es noch zu erledigen</summary><div class="in"><ul style="list-style:none;padding:0" id="todo"></ul></div></details>
+</div>`;
+const TODOS=[
+ ['t1','Taiwan Arrival Card online ausfüllen (laut Behörde innerhalb von 7 Tagen vor Ankunft, also ab sofort bis 16.10.), QR-Code speichern'],
+ ['t0','Reisepässe prüfen: Hongkong verlangt 6 Monate Gültigkeit nach der Ausreise (bis nach dem 30.04.2027), Taiwan 6 Monate bei Einreise'],
+ ['t2','Macau-Fähre für den 14.10. buchen (Hin ca. 14:30, Rück ca. 21:30)'],
+ ['t3','Restaurant in Macau für den 14.10. reservieren (z. B. Restaurante Litoral)'],
+ ['t4','Taipei-101-Ticket für den 18.10. mit Sonnenuntergangs-Zeitfenster buchen'],
+ ['t5','Transport für Yehliu/Jiufen am 19.10. klären (Bus, Taxi oder Tour)'],
+ ['t6','Niu Lao Da in Kaohsiung für Sonntag, 25.10. reservieren'],
+ ['t7','Alamo: frühere Rückgabe am 29.10. (ca. 17:30) und Tankregel bestätigen lassen'],
+ ['t8','Taroko: Wegestatus am Abend des 20.10. prüfen'],
+ ['t9','Alishan-Waldbahn (Sonnenaufgang) ab 14.10. online reservieren, Weg von Leye zur Alishan Station in Google Maps prüfen'],
+ ['t13','Symphony of Lights: prüfen, ob die Show noch täglich läuft (Einstellung für 2026 angekündigt)'],
+ ['t10','Ankunftszeiten melden: W house, Humble, Sun Moon Inn (Parkplatz reservieren)'],
+ ['t11','Bargeld: 7.600 TWD für das Alishan-B&B bereithalten'],
+ ['t12','Benedict: Führerschein + internationaler Führerschein prüfen (Zusatzfahrer)']
+];
+function renderTodos(){
+  const ul=$('#todo');if(!ul)return;
+  ul.innerHTML=TODOS.map(([id,t])=>`<li><label class="chk" style="display:flex;border:0;background:none;padding:4px 0;color:var(--ink);font-size:15px;gap:10px;align-items:flex-start"><input type="checkbox" data-todo="${id}" ${DONE[id]?'checked':''} style="margin-top:4px"> <span>${esc(t)}</span></label></li>`).join('');
+  $$('input[data-todo]',ul).forEach(cb=>cb.addEventListener('change',()=>{DONE[cb.dataset.todo]=cb.checked;saveDone()}));
+}
+
+/* Interaktion */
+let FILTER='all';
+function applyFilter(){
+  $$('.glance li,.st').forEach(el=>{
+    const k=el.dataset.k,star=el.dataset.star==='1';
+    let show=true;
+    if(FILTER==='star')show=star;else if(FILTER!=='all')show=(k===FILTER);
+    el.classList.toggle('hide',!show);
+  });
+  $$('.tools .pill[data-f]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===FILTER?'true':'false'));
+}
+function updateProgress(){
+  DAYS.forEach(d=>{
+    let n=0;d.st.forEach((s,j)=>{if(DONE[d.id+'-'+j])n++});
+    const sec=$('#'+d.id);if(!sec)return;
+    $('.prog>i',sec).style.width=(100*n/d.st.length)+'%';
+    $$('.glance li',sec).forEach(li=>li.classList.toggle('done',!!DONE[li.dataset.st]));
+  });
+}
+function openStation(sid){
+  const el=document.getElementById(sid);if(!el)return;
+  const more=el.closest('details.more');if(more)more.open=true;
+  el.open=true;
+  setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),60);
+}
+function goDay(id,open){
+  const el=document.getElementById(id);if(!el)return;
+  if(open){const m=$('details.more',el);if(m)m.open=true}
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function ymd(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function init(){
+  render();renderTodos();
+  const bar=$('#chips');
+  bar.innerHTML=DAYS.map(d=>{const f=fmt(d.date);return`<button class="dchip reg-${d.reg}" data-chip="${d.id}"><b>${f.d}.</b><span>${f.wd} · ${f.m}</span><i></i></button>`}).join('');
+  const today=ymd(new Date());const td=DAYS.find(d=>d.date===today);
+  if(td){$(`[data-chip="${td.id}"]`).classList.add('today')}
+  document.addEventListener('click',e=>{
+    const chk=e.target.closest('.chk[data-id]');
+    if(chk){e.preventDefault();e.stopPropagation();const cb=$('input',chk);cb.checked=!cb.checked;DONE[chk.dataset.id]=cb.checked;saveDone();updateProgress();return}
+    const go=e.target.closest('[data-go]');if(go){goDay(go.dataset.go,true);return}
+    const chip=e.target.closest('[data-chip]');if(chip){goDay(chip.dataset.chip,false);return}
+    const li=e.target.closest('.glance li[data-st]');if(li){openStation(li.dataset.st);return}
+    const f=e.target.closest('.pill[data-f]');if(f){FILTER=f.dataset.f;applyFilter();return}
+    const act=e.target.closest('[data-act]');
+    if(act){
+      if(act.dataset.act==='open'){$$('details.more,details.st').forEach(x=>x.open=true)}
+      if(act.dataset.act==='close'){$$('details.more,details.st').forEach(x=>x.open=false)}
+      if(act.dataset.act==='today'){if(td)goDay(td.id,true);else window.scrollTo({top:$('#ueberblick').offsetTop-90,behavior:'smooth'})}
+      if(act.dataset.act==='theme'){const r=document.documentElement;const dark=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);r.dataset.theme=dark?'light':'dark'}
+    }
+    if(e.target.id==='totop')window.scrollTo({top:0,behavior:'smooth'});
+  });
+  applyFilter();updateProgress();
+  /* aktive Tageskachel */
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){$$('.dchip').forEach(c=>c.classList.toggle('on',c.dataset.chip===en.target.id));const c=$(`.dchip[data-chip="${en.target.id}"]`);if(c)c.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})}})},{rootMargin:'-30% 0px -60% 0px'});
+    $$('.day').forEach(s=>io.observe(s));
+  }
+  window.addEventListener('scroll',()=>{$('#totop').classList.toggle('show',window.scrollY>600)},{passive:true});
+  if(td){const m=$('details.more',$('#'+td.id));if(m)m.open=true;setTimeout(()=>goDay(td.id,true),300)}
+}
+
+D('d1012','2026-10-12','Abflug: Düsseldorf → Doha','Düsseldorf · Doha','transit','Nachtflug, Umstieg in Doha',
+'Heute zählt Ruhe: nichts vergessen, früh am Flughafen sein und im Flieger schlafen, wo es geht.',[
+T('11:55','Check-in Düsseldorf','m','plane','Treffpunkt am Qatar-Airways-Schalter, 3,5 Stunden vor Abflug. Euer Gepäck geht bis Hongkong, die Reise beginnt.',
+ ['Koffer und Duffle aufgeben (30 kg Freigepäck pro Person bei Qatar)','Handgepäck: ein Stück bis 7 kg mit Medikamenten, CPAP, Elektronik und dem ausgedruckten Attest','Sitze: 18A und 18C'],
+ ['Mounjaro-Pen, Nadeln und Medikamente an der Sicherheitskontrolle griffbereit halten, Attest zeigen','Powerbank nur im Handgepäck'],'Flughafen Düsseldorf'),
+T('15:25','Flug QR086 Düsseldorf → Doha','m','plane','Rund fünf Stunden im Dreamliner (Boeing 787-8), Landung in Doha um 22:30 Ortszeit.',
+ ['Viel trinken, Ohrstöpsel und Schlafmaske bereit','Doha ist eine Stunde vor Deutschland, Uhr ruhig schon umstellen'],
+ ['CPAP im Flug nur mit Bordsteckdose nutzbar, vorab bei Qatar nachfragen']),
+T('22:30','★ Umstieg in Doha (3 Std. 45 Min.)','m','plane','Hamad International ist einer der bekanntesten Flughäfen der Welt. Ihr bleibt im Transitbereich.',
+ ['Fotostopp beim riesigen gelben „Lamp Bear“ in der Halle','Abendessen als Snack, Wasserflasche auffüllen, Handy laden','Gate des Anschlussflugs rechtzeitig prüfen'],
+ ['Das Genehmigungssystem Katars (seit 5.8.2026) betrifft Narkotika und Psychotropika. Eure Medikamente zählen nach der internationalen Einstufung nicht dazu (meine Einschätzung, Liste nicht Wort für Wort geprüft). Ob es für reine Transitreisende im Airside gilt, ist nicht dokumentiert: Originalpackungen plus Attest im Handgepäck','Boarding beginnt meist ca. 45 Minuten vor Abflug'],'Hamad International Airport Doha')
+]);
+
+D('d1013','2026-10-13','Ankunft & Kowloon bei Nacht','Hongkong · Kowloon','hk','Kerry Hotel Hong Kong, Hung Hom (1. Nacht)',
+'Ihr kommt müde an. Heute nur Hotel, Clay Pot Rice, Nachtmarkt und früh ins Bett. Wach bleiben bis ca. 22 Uhr hilft gegen den Jetlag.',[
+T('02:15–15:10','Flug QR818 Doha → Hongkong','m','plane','Der lange Nachtflug (rund 8,5 Stunden) bringt euch nach Hongkong, Landung 15:10 Ortszeit (UTC+8).',
+ ['Schlafen, trinken, Beine bewegen','Sitze: 63K und 63J'],['Der Zeitunterschied zu Deutschland beträgt jetzt sechs Stunden']),
+T('15:10','Ankunft & Einreise Hongkong','m','plane','Einreise mit Reisepass, Gepäck holen, dann am Flughafen eine Octopus-Karte kaufen.',
+ ['Octopus gilt in MTR, Bussen, Star Ferry und vielen Läden','Handy: eSIM aktivieren, Google Maps testen'],
+ ['Deutsche reisen nach Hongkong 90 Tage visumfrei ein (Angabe des Hongkonger Büros in Berlin)','Laut Hongkonger Behörde muss der Pass noch 6 Monate nach der geplanten Ausreise gültig sein (also bis nach dem 30.04.2027)']),
+T('15:20–16:20','Airport Express → Hung Hom','m','train','Der Airport Express fährt in ca. 22 Minuten nach Kowloon, danach kurz per Taxi oder MTR zum Hotel nach Hung Hom.',
+ ['Ticket am Automaten (Octopus oder Karte) oder vorab online','Alternative: Taxi direkt ab Flughafen, ca. 35–45 Minuten'],
+ ['Taxis nur am offiziellen Stand nehmen','Airport Express nach Kowloon ca. HK$ 115 pro Person (Fahrpreis laut Reiseportal 2026), Taxi ab Bahnhof ca. HK$ 60–80 (Schätzung)'],'Kowloon Station Hong Kong'),
+T('ab 16:15','Check-in Kerry Hotel Hong Kong','h','bed','Euer Hotel liegt direkt an der Bucht von Hung Hom, 38 Hung Luen Road, mit Meerblick im Deluxe-Zimmer.',
+ ['Zahlung im Hotel mit der hinterlegten Kreditkarte (ca. 873 € für 3 Nächte)','Kurz frisch machen, Koffer so packen, dass ihr am 16.10. um 07:00 schnell weg seid'],
+ ['Die Zahlungskarte muss beim Check-in dabei sein','Kein Frühstück im Preis'],'Kerry Hotel Hong Kong'),
+T('18:00–19:30','★ Hing Kee & Temple Street Night Market','f','market','Hing Kee ist ein lautes, lebendiges Lokal an der Temple Street mit Clay Pot Rice (Reis im Tontopf) mit Hähnchen oder Trockenoktopus und gebratenem Austern-Omelett. Danach schlendert ihr über den Temple Street Night Market in Yau Ma Tei.',
+ ['Clay Pot Rice dauert 20–30 Minuten, in Ruhe bestellen und teilen','Nachtmarkt: Souvenirs, Straßenküche, Wahrsager und Opernsänger'],
+ ['Barzahlung bereithalten, viele Garküchen nehmen keine Karten','Auf dem Markt ist Handeln üblich, bei Essen aber nicht','Alternative: Oi Man Sang (Sham Shui Po), offene Garküche mit „Wok Hei“'],'Hing Kee Temple Street Yau Ma Tei'),
+T('ab 19:45','Symphony of Lights (optional)','s','skyline','Jeden Abend um 20:00 Uhr leuchten die Wolkenkratzer rund um den Victoria Harbour im Takt der Musik. Am besten von der Promenade in Tsim Sha Tsui.',
+ ['Gegen 19:45 Uhr an der Promenade sein','Danach ein Stück zur Avenue of Stars'],
+ ['Die Regierung hat im Haushalt 2026 angekündigt, die tägliche Show in der zweiten Jahreshälfte 2026 einzustellen. Laut einer Quelle lief sie zuletzt noch täglich um 20:00, ein Enddatum stand nicht fest: vorab auf der Seite der Hongkonger Tourismusbehörde prüfen','Heute nicht übertreiben, morgen geht es um 09:00 los'],'Tsim Sha Tsui Promenade')
+]);
+
+D('d1014','2026-10-14','Central am Vormittag, Macau am Abend','Hongkong · Macau','hk','Kerry Hotel Hong Kong (2. Nacht)',
+'Ein langer, schöner Tag mit zwei Grenzübertritten: Reisepass, Octopus und das Attest für die Medikamente gehören in die Tasche. Die Rückfähre nicht zu spät nehmen.',[
+T('08:30','Frühstück Australia Dairy Company','f','noodle','Ein legendäres Café-Restaurant (Cha Chaan Teng) in Jordan, bekannt für cremige Rühreier auf Toast und Milchpudding.',
+ ['Rühreier auf Toast, Milchtee und Milchpudding bestellen','Tische werden geteilt, das gehört dazu'],
+ ['Hektisch und eng, Schlangen kommen schnell','Öffnungszeiten vorab prüfen','Alternative: Lan Fong Yuen (Central), Silk-Stocking-Milchtee und Pineapple Bun mit Butter'],'Australia Dairy Company Jordan'),
+T('10:00','★ Star Ferry nach Central','s','ferry','Die grün-weißen Star-Ferry-Fähren queren seit 1888 den Victoria Harbour. Die Überfahrt dauert ca. 10 Minuten und gehört zu den schönsten Nahverkehrsfahrten der Welt.',
+ ['Aufs Oberdeck, Blick auf die Skyline an beiden Ufern','Mit der Octopus-Karte bezahlen'],
+ ['Aussteigen in Central, danach geht es zu Fuß, per MTR oder Taxi nach Sheung Wan'],'Star Ferry Pier Tsim Sha Tsui'),
+T('10:45','★ Man Mo Tempel','s','temple','Der Tempel wurde 1847 gegründet und ist Man Tai (Gott der Literatur) und Mo Tai (Kriegsgott) gewidmet. Von der Decke hängen riesige Räucherspiralen.',
+ ['Die Spiralen von unten fotografieren, ohne Blitz','Danach durch die Gassen Richtung Hollywood Road mit Antiquitäten und Galerien'],
+ ['Der Rauch brennt in den Augen, nicht lange unter den Spiralen stehen','Leise sein, Betende nicht stören und nicht mit dem Finger auf Altäre zeigen'],'Man Mo Temple Hollywood Road'),
+T('12:15','★ Mittagessen Yat Lok','f','noodle','Ein winziger Laden in Central mit Michelin-Auszeichnung. Berühmt sind Roast Goose (Gänsebraten) auf Lai-Fun-Nudeln mit Pflaumensauce.',
+ ['Gans mit Nudeln oder Reis bestellen','Zu zweit geht es schneller, Plätze werden geteilt'],
+ ['Keine Reservierung, zur Mittagszeit gibt es Schlangen','Barzahlung bereithalten','Alternative: Lin Heung Tea House, Dim Sum vom Wagen'],'Yat Lok Central Hong Kong'),
+T('13:45','Zur Fähre nach Macau','m','ferry','Die Schnellfähre der TurboJET fährt vom Macau Ferry Terminal im Shun Tak Centre (Sheung Wan) und braucht ca. 55 Minuten. Plant die Abfahrt um ca. 14:30.',
+ ['Ticket online buchen oder am Schalter kaufen. Die Tarife stiegen am 25.04.2026 um ca. 10 %: tagsüber Economy ab ca. HK$ 190–200, Nachtfahrten teurer (die Tarifmeldung nennt Economy bis HK$ 259)','Beim Online-Ticket gegen Reisepass am Automaten im Terminal tauschen, ca. 30 Minuten vorher da sein','Reisepass bereithalten, es gibt einen Ausreisestempel'],
+ ['Die Fähren fahren laut Fährportalen tagsüber etwa halbstündlich, abends stündlich, auf dem Hinweg ist die Abfahrt um ca. 14:30 problemlos','Rückfahrt: letzte reguläre Abfahrt in Macau laut Fährportalen ca. 23:00, Fahrplan des Anbieters kurz vorher prüfen'],'Macau Ferry Terminal Shun Tak Centre Sheung Wan'),
+T('15:30','Ankunft in Macau','m','ferry','Anlegestelle ist der Outer Harbour Ferry Terminal. Es folgt die Einreise mit Reisepass, danach per Taxi oder Bus in die Altstadt.',
+ ['Taxi ist am einfachsten, Preis vor Ort','Medikamenten-Attest im Handgepäck dabei haben'],
+ ['Deutsche sind in Macau 90 Tage visumfrei (Macao Yearbook 2025)','Macau hat eine eigene Währung (Pataca, MOP), HKD werden meist akzeptiert (vor Ort prüfen)'],'Macau Outer Harbour Ferry Terminal'),
+T('16:15','A-Ma-Tempel','s','temple','Der A-Ma-Tempel an der Südspitze der Halbinsel ist der Meeresgöttin Mazu geweiht und über 500 Jahre alt (Gründung gilt als 1488). Er gehört zum UNESCO-Welterbe der Altstadt.',
+ ['Terrassen und Räucherspiralen anschauen','Zum Sonnenuntergang (ca. 17:50) Blick über den Hafen'],
+ ['Öffnungszeiten laut Quellen ca. 07:00 bzw. 08:00 bis 18:00 (Angaben uneinheitlich), um 16:15 seid ihr rechtzeitig dort','Falls es knapp wird, den Tempel streichen und direkt zur Altstadt fahren'],'A-Ma Temple Macau'),
+T('17:30','Senado Square','s','plaza','Das Herz der Altstadt: ein Platz mit wellenförmigem portugiesischem Mosaikpflaster, umgeben von pastellfarbenen Kolonialhäusern.',
+ ['Mandelkekse und Fleischchips (Bakkwa) probieren, die Läden geben gern Kostproben','Egg Tart bei Margaret’s Café e Nata oder Lord Stow’s'],
+ ['Sehr voll an Wochenenden und Feiertagen','Standorte und Öffnungszeiten der Läden vorab prüfen (nicht verifiziert)'],'Senado Square Macau'),
+T('18:15','★ Ruins of St. Paul’s & Monte Fort','s','facade','Von der Kirche aus dem 17. Jahrhundert blieb nach einem Brand nur die imposante Steinfassade stehen. Dahinter liegt das Monte Fort mit Kanonen und Blick über die Stadt.',
+ ['Die Stufen zur Fassade hinaufsteigen und die Reliefs anschauen','Zum Monte Fort, Aussicht über das Dächermeer'],
+ ['Gedränge auf den Stufen, Taschen im Blick behalten','Essen und Trinken sind bei den Ruinen nicht erlaubt','Museum und Krypta bei den Ruinen schließen laut Quelle ca. 18:00, das Macau Museum im Monte Fort ist 10:00–18:00 geöffnet: ihr kommt kurz vor Schluss an, die Aussicht vor Ort prüfen'],'Ruins of St. Paul’s Macau'),
+T('19:00','★ Abendessen: Macanese Küche','f','noodle','Macanese Küche ist die Fusion aus portugiesischen und chinesischen Aromen. Typisch sind African Chicken, Minchi, Tamarind-Schwein, Seafood Rice und Serradura (Sägemehl-Dessert).',
+ ['Mehrere Gerichte teilen','Serradura zum Nachtisch'],
+ ['Reservierung empfohlen (z. B. Restaurante Litoral), noch nicht erfolgt','Plan B: Straßenimbisse rund um Senado Square (Pork Chop Bun, Egg Tarts)'],'Restaurante Litoral Macau'),
+T('20:30','Abendspaziergang oder Cotai Strip','s','skyline','Zurück durch die beleuchtete Altstadt oder per Taxi zum Cotai Strip mit den Casino-Resorts und ihren Lichtern.',
+ ['Fotos bei Nacht an den Ruins und am Senado Square','Optional: ein Blick in die Lobby eines Casino-Resorts'],
+ ['Casino-Zutritt nur mit Ausweis, ab 21 Jahren','Zeitreserve für die Rückfähre einplanen'],'Cotai Strip Macau'),
+T('21:00–22:00','Rückfähre nach Hongkong','m','ferry','Die Fähre bringt euch in ca. 55 Minuten zurück nach Sheung Wan, von dort per MTR oder Taxi nach Hung Hom (ca. 30–40 Minuten).',
+ ['Abends fahren die Fähren laut Fährportalen stündlich: die Abfahrt um 21:00 oder 22:00 nehmen','Pass für Ausreise Macau und Einreise Hongkong bereit'],
+ ['Letzte Fähre (laut Portalen ca. 23:00) nicht ausreizen','Ankunft im Hotel zwischen 23:15 und 00:15, morgen ist kein früher Start nötig'],'Outer Harbour Ferry Terminal Macau')
+]);
+
+D('d1015','2026-10-15','Hongkong von oben & Sai Kung','Hongkong · Victoria Peak · Sai Kung','hk','Kerry Hotel Hong Kong (3. Nacht)',
+'Früh los für den Peak, Sai Kung am Nachmittag. Heute Abend packen, denn morgen geht es um 07:00 zum Flughafen.',[
+T('08:00','Frühstück Sing Heung Yuen','f','noodle','Ein lokaler Klassiker in Central für süß-saure Tomaten-Nudelsuppe mit Rind und Spiegelei und knusprigen Zitronen-Honig-Toast.',
+ ['Nudelsuppe mit Tomatenbrühe bestellen','Toast zum Teilen'],
+ ['Zur Stoßzeit voll und eng','Alternative: Kam Wah Bakery (Mong Kok), Pineapple Buns und Eiertörtchen'],'Sing Heung Yuen Central Hong Kong'),
+T('09:00','★ Victoria Peak','s','mountain','Der Peak ist Hongkongs berühmter Aussichtsberg (ca. 552 m). Die Peak Tram, seit 1888 in Betrieb, bringt euch in wenigen Minuten hinauf. Ihr schaut auf Wolkenkratzer, Hafen und Berge.',
+ ['Früh hochfahren, später werden die Schlangen lang','Optional den Peak Circle Walk (ca. 3,5 km, fast flach, ca. 1 Stunde) mit Blick auf die Südseite der Insel','Die Kombination aus Skyline und Grün ist am schönsten bei klarer Sicht'],
+ ['Die Peak Tram fährt laut Betreiber täglich 07:30–23:00, der Peak Tower ab 07:00, das Sky Terrace 428 von 08:30 bis 22:00','Bei Wolken oder Dunst sieht man wenig, bei Taifunsignalen fährt die Bahn eingeschränkt oder gar nicht','Online-Tickets (z. B. Sky Pass ab ca. HK$ 149 laut Drittquelle) sparen die Kassenschlange, nicht unbedingt die Bahnschlange'],'Victoria Peak Hong Kong'),
+T('12:30','Mittagessen Sister Wah','f','noodle','Ein kleiner Nudelladen in Tin Hau mit klarer Rinderbrust-Nudelsuppe, die für ihre saubere, aromatische Brühe bekannt ist.',
+ ['Rinderbrust-Nudeln bestellen','Danach kurz ausruhen, es folgt die Fahrt nach Sai Kung'],
+ ['Barzahlung oder Octopus bereithalten','Alternative: Joy Hing (Wan Chai), Char Siu, Roast Duck und Hähnchen auf Reis'],'Sister Wah Tin Hau Hong Kong'),
+T('13:30','Fahrt nach Sai Kung','m','road','Mit der MTR bis Choi Hung, dann mit Bus oder Minibus (z. B. Minibus 1A oder Bus 92) nach Sai Kung. Fahrzeit insgesamt ca. 1 Stunde.',
+ ['Mit der Octopus-Karte bezahlen','Aussicht über Reservoirs und Berge genießen'],
+ ['Linien vor Ort prüfen (nicht verifiziert)','Rückfahrt abends ebenfalls ca. 1 Stunde einplanen'],'Sai Kung Town Hong Kong'),
+T('14:30','★ Sai Kung Altstadt & Hafen','s','coast','Sai Kung ist ein Fischerort im Osten der New Territories mit Promenade, Fischerbooten und Seafood-Restaurants. Das Tempo ist viel ruhiger als in der Stadt.',
+ ['Entlang der Promenade schlendern, Fischerboote anschauen','Den kleinen Tin Hau Tempel besuchen','Optional ein Dim-Sum-Stopp'],
+ ['Am Wochenende deutlich voller, donnerstags ist es angenehm','Sonnencreme und Wasser mitnehmen'],'Sai Kung Waterfront Hong Kong'),
+T('18:00','★ Abendessen Hung Kee Seafood','f','noodle','Eines der bekannten Seafood-Restaurants in Sai Kung. Berühmt ist Languste mit cremigen Yimen-Nudeln.',
+ ['Frischen Fisch oder Languste am Becken aussuchen','Yimen-Nudeln dazu bestellen'],
+ ['Meeresfrüchte werden nach Gewicht berechnet, Preis vorher klären und auf die Rechnung schauen','Alternative: Islam Food (Kowloon City), Rindfleisch-Pfannkuchen und Lammbrust-Curry'],'Hung Kee Seafood Restaurant Sai Kung'),
+T('20:30','Rückfahrt & Packen','m','train','Zurück per Bus und MTR zum Hotel, ca. 1 Stunde. Danach Koffer packen.',
+ ['Reisepass, Octopus-Restguthaben, Taiwan-Arrival-Card-QR griffbereit','Wecker auf 06:15'],
+ ['Morgen früh Abfahrt um 07:00, Check-out schon vorab erledigen'])
+]);
+
+D('d1016','2026-10-16','Von Hongkong nach Taipeh','Hongkong · Taipeh','tw','Humble Boutique Hotel, Taipeh (1. Nacht)',
+'Reisetag mit kurzem Flug: Duffle maximal 23 kg und den Arrival-Card-QR-Code bereit. Nachmittag und Abend sind für Ximending und den ersten Nachtmarkt.',[
+T('07:00','Zum Flughafen','m','train','Per Taxi oder MTR bis Kowloon Station und mit dem Airport Express zum Flughafen, gesamt ca. 45–60 Minuten.',
+ ['Check-in gegen 08:10, Abflug um 10:10','Frühstück am Flughafen oder an Bord'],
+ ['Der formale Check-out wäre bis 12:00, ihr fahrt aber früh','Gepäck bitte vorab wiegen'],'Hong Kong International Airport'),
+T('10:10','Flug CX494 Hongkong → Taipeh','m','plane','Cathay Pacific, Airbus A330, Economy Light. Flugzeit knapp zwei Stunden, Landung 12:10 in Taiwan (gleiche Zeitzone wie Hongkong).',
+ ['Im Light-Tarif ist laut Cathay Pacific ein Gepäckstück bis 23 kg inklusive, dazu Handgepäck bis 7 kg','Duffle vorher wiegen'],
+ ['Mehr als 23 kg kosten Aufpreis, die Qatar-Flüge (30 kg) gelten hier nicht','Alle Fleisch- und Obstreste vorher wegwerfen']),
+T('12:10','★ Ankunft & Einreise Taiwan','m','plane','Ihr landet am Taoyuan International Airport (Terminal 1). Einreise mit Reisepass und der online ausgefüllten Taiwan Arrival Card.',
+ ['Geld abheben: ca. 8.000–10.000 TWD für den Start','EasyCard kaufen, eSIM prüfen'],
+ ['Die Taiwan Arrival Card muss laut Behörde innerhalb von 7 Tagen vor Ankunft online ausgefüllt werden (twac.immigration.gov.tw), das geht also schon vorher, QR-Code bereit','Deutsche sind 90 Tage visumfrei, der Pass muss bei Einreise noch mindestens 6 Monate gültig sein (Angabe des taiwanischen Konsularamts)','Keine Fleisch- oder Wurstprodukte und kein frisches Obst einführen (Bußgeld)'],'Taoyuan International Airport Terminal 1'),
+T('12:20–13:25','Airport MRT nach Taipeh','m','train','Der Airport MRT Express fährt in ca. 36 Minuten zum Taipei Main Station. Von dort per MRT oder Taxi zur Haltestelle Songjiang-Nanjing und zum Hotel.',
+ ['Ticket (NT$ 160, vorab über Klook ca. NT$ 140) am Automaten oder online','Alternativ Taxi direkt, ca. 55–65 Minuten gesamt'],
+ ['In der MRT nicht essen oder trinken (Bußgeld)','Bei großem Gepäck im Wagen vorne bleiben'],'Taipei Main Station'),
+T('ab 15:00','Check-in Humble Boutique Hotel','h','bed','Euer Zuhause für vier Nächte in Zhongshan, No. 116 Songjiang Road. Frühstück inklusive, Pool und Sauna im 10. Stock.',
+ ['Bei früher Ankunft Gepäck an der Rezeption lassen','Ankunftszeit vorab mitgeteilt haben'],
+ ['Check-in ab 15:00'],'Humble Boutique Hotel Taipei'),
+T('15:00–16:00','Mittagessen Lao Shandong','f','noodle','Ein rund 70 Jahre alter Laden in Ximending mit handgeschnittenen Weizennudeln in einer langen gekochten Rinderknochenbrühe.',
+ ['Rindernudeln bestellen','Danach nur noch langsam durch das Viertel gehen'],
+ ['Zur Mittagszeit oft voll','Alternative: Ah Chung Flour Rice Noodles, legendärer Stehimbiss mit Nudeln in Bonito-Brühe'],'Lao Shandong Homemade Noodles Ximending'),
+T('16:00–17:30','Ximending','s','market','Taipehs Fußgängerviertel für junge Mode, Kino und Straßenkunst. Es ist bunt, laut und ein guter Ort für den ersten Eindruck der Stadt.',
+ ['Durch die Fußgängerzone und die Seitengassen schlendern','Bubble Tea probieren, Streetwear und Anime-Läden ansehen'],
+ ['Viele Menschen, Taschen vorn tragen','Nicht zu lange bleiben, ihr seid noch im Jetlag'],'Ximending Taipei'),
+T('18:30','★ Nanjichang Night Market','f','market','Ein kleiner, gemütlicher Nachtmarkt mit lokalen Spezialitäten: Klebreis im Bambusrohr, frittierte vegetarische Austern-Kohl-Bällchen und Michelin-gelisteter Stinky Tofu.',
+ ['Mehrere Stände probieren und teilen','Stinky Tofu mutig kosten, der Geruch ist stärker als der Geschmack'],
+ ['Barzahlung bereithalten','Früh ins Bett gehen','Ji Yuan (Hühnersuppe) bräuchte Reservierung und ist nur Alternative'],'Nanjichang Night Market Taipei')
+]);
+
+D('d1017','2026-10-17','Palastmuseum & Shilin-Nachtmarkt','Taipeh · Shilin','tw','Humble Boutique Hotel (2. Nacht)',
+'Kunst am Vormittag, Pause am Nachmittag, abends der größte Nachtmarkt der Stadt. Samstags sind Museum und Markt voll, daher früh starten.',[
+T('08:00','Hotelfrühstück','f','noodle','Das Frühstück im Humble Boutique Hotel ist inklusive und laut Plan sehr gut.',
+ ['Satt essen, ihr habt einen langen Tag vor euch'],['Alternative: Fuhang Soy Milk, herzhafte Sojamilch mit Teigstangen (früh gehen, lange Schlange)']),
+T('09:00','★ Nationales Palastmuseum','s','museum','Eines der berühmtesten Museen Chinas mit einer der größten Sammlungen chinesischer Kunstschätze. Die Stücke stammen großteils aus der Kaiserzeit.',
+ ['Zu den Klassikern: der „Jadeit-Kohl“ und der „Fleischförmige Stein“','Audioguide oder App nutzen','Schließfächer für Taschen nutzen'],
+ ['Üblich Di–So 09:00–17:00 (letzter Einlass ca. 16:30), montags geschlossen, Eintritt NT$ 350 (Drittquellen, auf npm.gov.tw prüfen)','Jadeit-Kohl und Fleischförmiger Stein wechseln zwischen Taipeh und dem Südflügel: laut Meldung seit Feb. 2026 wieder im Norden, aktuelle Ausstellung vorab prüfen','Der 17.10. (Taiwan Culture Day) wird in einer Drittquelle als Tag mit freiem Eintritt geführt: dann noch voller, früh kommen','In manchen Sälen ist Fotografieren eingeschränkt, ca. 3 Stunden einplanen'],'National Palace Museum Taipei'),
+T('12:30','Mittagessen in Shilin','f','noodle','In Shilin rund ums Museum gibt es einfache Nudel- und Reisläden sowie Cafés im Museum selbst.',
+ ['Ein lokales Bento oder eine Nudelsuppe nehmen','Kaffeepause im Museumscafé'],
+ ['Vor Ort entscheiden']),
+T('14:30','Pause im Hotel (Pool & Sauna)','h','bed','Nach dem Museum eine Pause. Das Humble Boutique Hotel hat Pool und Sauna im 10. Stock.',
+ ['Duschen, Füße hochlegen','Pool oder Sauna nutzen'],['Badekleidung mitnehmen'],'Humble Boutique Hotel Taipei'),
+T('18:30','★ Shilin Night Market','f','market','Taipehs größter und bekanntester Nachtmarkt, Straßen voller Essensstände und Spielbuden. Es gibt Bonga Fried Chicken (riesiges Hähnchenschnitzel), Stinky Tofu und Michelin-gelistete Pfeffertasche.',
+ ['Zuerst Food Court im Untergeschoss und Hauptstraße abgehen','Gebratenes Hähnchen und Pepper Pie probieren','Bubble Tea zum Abschluss'],
+ ['Sehr voll, auf Taschen achten','Bargeld mitnehmen','Alternative: Raohe Street Night Market (Songshan)'],'Shilin Night Market Taipei')
+]);
+
+D('d1018','2026-10-18','Altstadt, Tempel & Taipei 101','Taipeh · Dadaocheng · Zhongzheng · Xinyi','tw','Humble Boutique Hotel (3. Nacht)',
+'Ein Tag quer durch Taipeh, von alt nach modern. Das Zeitfenster für Taipei 101 liegt zum Sonnenuntergang (ca. 17:30), das Ticket vorab buchen.',[
+T('08:30','Hotelfrühstück','f','noodle','Das inklusive Frühstück im Humble Boutique Hotel.',['Gut essen, Ruhe vor dem Stadtprogramm'],['Alternative: frische Brötchen aus Bäckereien in Zhongshan']),
+T('09:30','★ Dihua Street (Dadaocheng)','s','market','Taipehs älteste Handelsstraße mit Kräutern, Trockenfrüchten, Stoffen und Teeläden in historischen Häusern. Hier wurde im 19. Jahrhundert der Tee-Export groß.',
+ ['Durch die Straße bummeln, kleine Läden und Tee probieren','Zum Xiahai-Stadtgott-Tempel, bekannt für Glücks- und Liebeswünsche'],
+ ['Teils kleine Läden, einzelne sonntags zu','Ohne Eile besuchen, es ist ein Spaziergang'],'Dihua Street Dadaocheng Taipei'),
+T('11:30','Mittagessen Dihua-Snacks','f','market','In den Seitengassen gibt es Snacks wie weichen Mochi mit süßer roter Bohnenpaste und ganzer Erdbeere und warmen Klebreis.',
+ ['Mochi mit Erdbeere probieren','Klebreis-Snack für unterwegs'],
+ ['Alternative: Jin Feng Lu Rou Fan (Zhongzheng), geschmorter Schweinebauch auf Reis']),
+T('13:00','★ Longshan-Tempel','s','temple','Taipehs bekanntester Tempel, 1738 gegründet, mit buddhistischen und daoistischen Gottheiten unter einem Dach. Hauptgöttin ist Guanyin.',
+ ['Durch den rechten Eingang hinein, links hinaus (Tradition)','Den Betenden zuschauen, Weihrauch, Rituale, Opfergaben','Fotos ohne Blitz'],
+ ['Respektvoll sein, Gläubige nicht stören','Rauch und Gedränge, besonders sonntags'],'Longshan Temple Taipei'),
+T('14:30','Chiang-Kai-shek-Gedenkhalle','s','museum','Monumentale Halle mit blauem, achteckigem Dach, weißen Marmorwänden und großem Platz. Sie erinnert an den früheren Präsidenten.',
+ ['Die Treppe hinauf zur Statue','Wachablösung in der Halle (Zeiten vor Ort prüfen)','Platz und Gärten ringsum'],
+ ['Wachwechsel-Zeiten nicht verifiziert','Sonne und Hitze, Wasser mitnehmen'],'Chiang Kai-shek Memorial Hall Taipei'),
+T('16:30','★ Taipei 101 zum Sonnenuntergang','s','skyline','Das 101-stöckige Hochhaus war lange das höchste der Welt. Die Aussichtsetage liegt auf dem 89. Stock, der gewaltige Dämpfer-Ball im oberen Teil ist sichtbar.',
+ ['Zeitfenster zum Sonnenuntergang (ca. 17:30) wählen','Den goldenen Dämpfer (Tuned Mass Damper) anschauen','Danach durch die Hochhaus-Passagen von Xinyi schlendern'],
+ ['Online-Ticket (z. B. über Klook) mit Zeitfenster buchen: laut Drittquellen günstiger als die Kasse (ca. 600 TWD), der Einlass gilt für das aufgedruckte Zeitfenster','Seit 1. Juli 2026 sind Kasse und Eingang des Observatoriums laut Klook vorübergehend im Erdgeschoss des Bürotowers, Hinweise vor Ort beachten','Bei schlechtem Wetter wenig Sicht'],'Taipei 101'),
+T('19:30','★ Ningxia Night Market','f','market','Ein kleiner, konzentrierter Nachtmarkt, der sich ganz ums Essen dreht. Beliebt sind Gua Bao, gebackene Wachteleier mit Käse und Frühlingszwiebel-Röllchen.',
+ ['Gua Bao bei Lan Jia ausprobieren','Mehrere kleine Portionen teilen'],
+ ['Zur Hauptzeit voll','Alternative: Modern Toilet Restaurant (Ximending), Themenrestaurant mit gutem Curry-Rind'],'Ningxia Night Market Taipei')
+]);
+
+D('d1019','2026-10-19','Yehliu & Jiufen','Nordküste · Yehliu · Jiufen','tw','Humble Boutique Hotel (4. Nacht)',
+'Tagesausflug an die Nordküste. Ohne Auto geht es per Bus, Taxi oder Tour. Abends zurück, packen und früh schlafen: morgen um 08:00 beginnt die Mietwagenfahrt.',[
+T('08:00','Frühstück & Abfahrt Richtung Yehliu','m','road','Per Bus, Taxi oder geführter Tour (z. B. über Klook) zur Nordküste, Fahrzeit nach Yehliu ca. 1–1,5 Stunden.',
+ ['Frühstück im Hotel, Regenjacke einpacken','Transport am besten vorher buchen'],
+ ['Fahrplan und Preise vorab prüfen (noch nicht gebucht)','Rückkehr bis ca. 18:00 einplanen']),
+T('09:30','★ Yehliu Geopark','s','rocks','Eine Landzunge, auf der Wind und Meer bizarre Felsformen geschaffen haben: Pilzfelsen, Honigwaben und die berühmte „Queen’s Head“.',
+ ['Zum Queen’s Head und den Pilzfelsen laufen','Auf den Wegen bleiben und die Aussicht über die Küste genießen'],
+ ['Sehr sonnig und windig, Sonnenschutz mitnehmen','Felsen können rutschig sein','Öffnungszeiten prüfen (nicht verifiziert)'],'Yehliu Geopark'),
+T('12:00','Weiter nach Jiufen','m','road','Von Yehliu geht es mit Bus oder Taxi in rund 30–40 Minuten in die Berge nach Jiufen.',
+ ['Fenster-Blick auf die Küstenstraße','Regenschirm griffbereit, im Gebirge wechselt das Wetter schnell'],
+ ['Linien und Preise vor Ort prüfen (nicht verifiziert)']),
+T('13:00','★ Jiufen Altstadt & Lai Ah Po','s','tea','Eine frühere Goldgräberstadt am Berghang mit Treppengassen, Laternen und Teehäusern. Das Taro-Dessert bei Lai Ah Po (weiche Taro- und Süßkartoffelbällchen in süßer Suppe) ist ein Klassiker.',
+ ['Die Hauptgasse hinauf und an den Seiten über die Treppen hinab','Lai Ah Po Taro Balls und A-Zhu Peanut Ice Cream Roll probieren','Aussicht aufs Meer von den Terrassen'],
+ ['Sehr voll in den Mittagsstunden, besonders am Wochenende','Steile Treppen, bequeme Schuhe','Nebel und Regen sind häufig'],'Jiufen Old Street'),
+T('15:30','Teehaus in Jiufen','s','tea','Ein Teehaus am Hang ist der Ort für einen ruhigen Teestopp mit Blick auf Berge und Meer. Das A-Mei Tea House ist das bekannteste.',
+ ['Einen Oolong-Tee in traditioneller Kanne bestellen','Auf der Terrasse sitzen und den Blick genießen'],
+ ['Sitzplätze am Fenster sind begehrt','Öffnungszeiten prüfen (nicht verifiziert)'],'A-Mei Tea House Jiufen'),
+T('17:30','Rückfahrt nach Taipeh','m','road','Mit Bus oder Taxi zurück in die Stadt, ca. 1–1,5 Stunden.',['Wechselkleidung bereithalten falls nass'],['Rückfahrt rechtzeitig starten, der Abendverkehr ist dicht']),
+T('19:30','Abendessen Ginger Duck Pot','f','noodle','Ein Ente-Hot-Pot im Tontopf über Holzkohle mit Ingwer, Sesamöl und Reiswein, ein wärmendes Essen nach dem Ausflug.',
+ ['Enten-Hot-Pot mit Gemüse und Klößchen bestellen','Reiswein dazu, wenn ihr mögt'],
+ ['Alternative: ein einfaches Shabu-Shabu-Restaurant','Danach Gepäck für den Mietwagen vorbereiten'],'Ginger Duck Pot Taipei')
+]);
+
+D('d1020','2026-10-20','Mietwagen & Küstenfahrt nach Hualien','Taipeh · Yilan · Hualien','tw','W house, Hualien (1. Nacht)',
+'Heute beginnt die Rundreise. Ab ca. 17:30 wird es dunkel, deshalb Ankunft in Hualien möglichst gegen 15:30. Die Rezeption des W house schließt um 18:00.',[
+T('08:00','Mietwagenabholung (Alamo)','m','road','Abholung am Taipei Main Station, 1F No. 3 Beiping W Rd. Kompaktklasse (Toyota Vios o. ä.), Fahrer Marvin, Zusatzfahrer Benedict.',
+ ['Mitbringen: Führerschein, internationaler Führerschein, Reisepass, Kreditkarte auf den Fahrernamen','Auto rundum fotografieren, Tank und Kilometerstand dokumentieren','Handyhalterung, Ladekabel und Navigation einrichten'],
+ ['Rechtsverkehr, viele Roller: Schulterblick vor jedem Abbiegen','Mautabrechnung vorab erfragen','Zahlung am Schalter'],'Taipei Main Station Alamo'),
+T('09:00–10:30','Zurück zum Hotel, Check-out','h','bed','Mit dem Auto zum Hotel, Gepäck einladen und auschecken. Check-out wäre bis 12:00.',
+ ['Parkplatz kurz vor dem Hotel nutzen, Warnblinker','Frühstück im Hotel vorher mitnehmen'],
+ ['Nichts im Zimmer vergessen','Frühstück als Teil der Planung']),
+T('10:30','Fahrt Richtung Yilan','m','road','Über den Highway 5 geht es durch Tunnel nach Yilan, ca. 1 Stunde reine Fahrzeit. Danach weiter an der Küste.',
+ ['Wasser und Snacks im Auto griffbereit','Google Maps zeigt Staus gut an'],
+ ['Wochentags ist der Highway meist frei','Tankstellen sind selten in den Bergen, vorher tanken']),
+T('12:30','Mittagessen in Yilan','f','noodle','Yilan ist bekannt für Bento, Fischgerichte und Snacks aus der Region. Ein einfaches Mittagessen reicht.',
+ ['Bento oder lokale Nudelsuppe','Kurz Beine vertreten'],
+ ['Plan B: schnelle Teigtaschen bei Ankunft in Hualien']),
+T('14:00','★ Küstenstopps an der Suhua-Küste','s','coast','Die Suhua-Küstenstraße (von Su’ao nach Hualien) windet sich an Steilklippen über dem Pazifik, teils durch Tunnel. Sie gehört zu den spektakulärsten Strecken Taiwans.',
+ ['An Aussichtsparkplätzen anhalten, z. B. im Bereich der Qingshui-Klippen','Fotos von den Klippen und dem blauen Wasser'],
+ ['Bei Regen oder Taifun können Abschnitte gesperrt sein (Steinschlag)','Kurven, Tunnel, Lastwagen: Licht an, Abstand halten','Nicht auf der Straße halten'],'Suhua Highway Qingshui Cliff'),
+T('15:30','Check-in W house','h','bed','Ein kleines Hotel in Hualien City, No. 47-1 Fuguo Road. Der Schlüssel wird an der Rezeption übergeben (07:00–18:00).',
+ ['Ankunftszeit vorher melden','Frühstück ist nicht inklusive, morgens in der Stadt essen'],
+ ['Rezeption schließt um 18:00, danach kommt ihr nicht mehr gut herein','Check-in 15:00–19:00'],'W house Hualien'),
+T('17:00','★ Qixingtan-Strand bei Sonnenuntergang','s','beach','Ein langer Kieselstrand wenige Minuten vor der Stadt. Der Blick über den Pazifik und die Berge ist am Abend besonders schön.',
+ ['Am Strand spazieren, Steinchen sammeln','Sonnenuntergang (ca. 17:30) fotografieren'],
+ ['Nicht schwimmen: Strömung und steil abfallender Strand, Hinweisschilder vor Ort beachten','Windig, Jacke mitnehmen'],'Qixingtan Beach Hualien'),
+T('19:00','★ Dongdamen Night Market','f','market','Der größte Nachtmarkt der Ostküste mit Ständen aus allen Regionen und der Ureinwohner-Küche. Es gibt Wildschwein-Spieße, Frühlingszwiebel-Pfannkuchen und gegrillten Fisch.',
+ ['Zuerst die Ureinwohner-Straße (Aboriginal Night Market) abgehen','Mehrere Spieße und Pfannkuchen probieren'],
+ ['Bargeld mitnehmen','Alternative: einfaches Fischrestaurant am Hafen'],'Dongdamen Night Market Hualien')
+]);
+
+D('d1021','2026-10-21','Taroko-Schlucht','Hualien · Taroko-Nationalpark','tw','W house, Hualien (2. Nacht)',
+'Wichtig: Mehrere Hauptwege (Shakadang, Schwalbengrotte, Neun-Kehren-Tunnel, Baiyang, Weg zum Changchun-Schrein) sind laut Parkangaben von August 2026 gesperrt. Der Park empfiehlt stattdessen den Dekalun Trail. Status am Vorabend prüfen (taroko.gov.tw, hike.taiwan.gov.tw). Lunchpaket mitnehmen.',[
+T('07:30','Frühstück & Lunchpaket','f','noodle','Traditionelles Frühstück in Hualien (Sojamilch, Shaobing) und zum Mitnehmen Sandwiches, Onigiri und Obst.',
+ ['Sojamilch mit Shaobing bestellen','Lunchpaket in 7-Eleven oder FamilyMart kaufen'],
+ ['W house hat kein Frühstück','Alternative: schneller Snack bei FamilyMart oder 7-Eleven']),
+T('08:30','★ Taroko Besucherzentrum & Terrasse','s','mountain','Der Taroko-Nationalpark ist eine tiefe Marmorschlucht, die der Liwu-Fluss in die Berge geschnitten hat. Am Eingang liegt das Besucherzentrum mit einer Aussichtsterrasse. Eine Panoramastraße (Highway 8) führt durch die Schlucht.',
+ ['Im Besucherzentrum nach dem aktuellen Wegestatus und Straßenmeldungen fragen','Von der Terrasse auf den Eingang der Schlucht schauen'],
+ ['Laut Parkangaben (Stand Aug. 2026, über Reiseportale) gesperrt: Shakadang, Schwalbengrotte, Neun-Kehren-Tunnel, Baiyang, Changchun-Schrein-Weg, Zhuilu Old Road, Buluowan','Eine aktuelle offizielle Meldung für Oktober konnte ich nicht abrufen: Park prüfen','Steinschlag und Sperrungen auf Highway 8 sind möglich'],'Taroko National Park Visitor Center'),
+T('09:30','Dekalun Trail','s','tea','Ein Wanderweg im Gebiet der Truku-Ureinwohner nahe dem östlichen Eingang. Der Park empfiehlt ihn aktuell als offene Alternative.',
+ ['Kurzer Spaziergang durch Wald und Dorfumgebung','Pausen an Aussichtspunkten'],
+ ['Wegestatus vorher prüfen','Wasser, Regenjacke und festes Schuhwerk mitnehmen'],'Dekalun Trail Taroko'),
+T('11:00','Panoramastraße Highway 8','s','road','Die Straße durch die Schlucht ist die eigentliche Attraktion: Marmorwände, Tunnel, Brücken und Aussichtspunkte.',
+ ['An Aussichtspunkten kurz halten','Den Changchun-Schrein (Weg gesperrt) wenn möglich von der Straße aus ansehen'],
+ ['Straße kann zeitweise gesperrt oder nur zu bestimmten Zeiten befahrbar sein: Parkmeldungen prüfen','Nicht auf der Fahrbahn halten, Steinschlag möglich'],'Taroko Gorge Highway 8'),
+T('12:30','★ Tianxiang (Mittag & Xiangde-Tempel)','s','pagoda','Ein Dorf am oberen Ende der Schlucht mit Besucherzentrum, Pagode und Hängebrücke. Der Weg zum Xiangde-Tempel war laut Quellen früh 2026 wieder offen.',
+ ['Lunchpaket essen oder eine Nudelsuppe im Besucherzentrum','Hängebrücke und Pagode ansehen, Xiangde-Tempel besuchen'],
+ ['Im Park gibt es nur wenige, oft volle Essensstände','Hängebrücke bei Wind schwankend','Bei Regen Wege rutschig'],'Tianxiang Taroko'),
+T('14:30','Lushui-Wanderweg (optional)','s','tea','Kurze Teilstücke der Lushui-Wege sind laut Drittquelle offen und eignen sich für einen ruhigen Nachmittagsspaziergang.',
+ ['Nur den offenen Teil gehen','Ruhige Pause im Wald'],
+ ['Nur wenn Status geprüft: Teilstücke können gesperrt sein','Plan B ohne Wandern: Qixingtan oder ein ruhiger Nachmittag in Hualien'],'Lushui Trail Taroko'),
+T('16:30','Rückfahrt nach Hualien','m','road','Zurück durch die Schlucht in ca. 1 Stunde. Danach duschen und ausruhen.',
+ ['Tanken, Auto im Blick behalten','Wäsche waschen, falls nötig'],['Ab 17:30 dunkel, Schlucht nicht mehr im Dunkeln befahren']),
+T('18:30','Abendessen: taiwanisches Comfort Food','f','noodle','Ein gemütliches lokales Restaurant mit Reis, geschmortem Schweinebauch und frischem Saisongemüse.',
+ ['Ein Gericht mit geschmortem Schweinebauch und Reis bestellen','Frisches Gemüse dazu'],
+ ['Alternative: erneuter Besuch des Dongdamen Night Market'])
+]);
+
+D('d1022','2026-10-22','Highway 11 nach Taitung','Hualien · Ostküste · Taitung','tw','Tai Dong Jin Kuai Homestay, Taitung (1. Nacht)',
+'Die schönste Strecke der Ostküste. Plant Zeit für Stopps. Ankunft in Taitung gegen 15:30, bevor es dunkel wird. Highway 9 ist nicht die Küstenstraße, nehmt Highway 11.',[
+T('08:00','Frühstück & Check-out','h','bed','Frühstück in Hualien und Check-out im W house (bis 11:00).',
+ ['Auto beladen, Tank prüfen','Wasser und Snacks für die Fahrt'],['Kein Frühstück im Hotel']),
+T('09:00','Start auf Highway 11','m','road','Die Küstenstraße ist ein- bis zweispurig, mit Pazifik auf der einen und Berg auf der anderen Seite. Reine Fahrzeit ca. 3 Stunden.',
+ ['Immer wieder an Aussichtsparkplätzen halten','Nicht hetzen'],
+ ['Highway 9 führt durchs Längstal, nicht an die Küste','Lastwagen und Roller auf schmaler Straße, defensiv fahren']),
+T('10:00','Baxiandong (Höhlen der Acht Unsterblichen)','s','coast','Meeresgrotten bei Changbin an der Ostküste mit buddhistischen und daoistischen Schreinen. Der Name geht auf die acht Unsterblichen zurück.',
+ ['Treppe zu den Höhlen steigen, Blick aufs Meer','Fotos von Grotte und Küste'],
+ ['Steile Treppen','Windig, Jacke mitnehmen','Öffnungszeiten prüfen (nicht verifiziert)'],'Baxiandong Changbin Taitung'),
+T('11:30','Shitiping','s','coast','Ein Küstenabschnitt mit markanten Gesteinsschichten und einem Felsplateau direkt am Pazifik.',
+ ['Am Rand der Felsen entlang spazieren','Wellen und Gesteinsschichten beobachten'],
+ ['Nicht zu nah an die Kante, Wellen können hochschlagen','Rutschiger Boden'],'Shitiping Hualien'),
+T('13:00','★ Mittagessen: Donghe Buns','f','noodle','Donghe ist weit bekannt für frisch gedämpfte Hefeklöße, gefüllt mit Schwein und Kohl oder süßer roter Bohne.',
+ ['Zwei verschiedene Füllungen probieren','Mit einem Bun in der Hand an die Brücke gehen'],
+ ['Barzahlung bereithalten','Alternative: frischer Fisch an einem Fischerhafen an der Küstenstraße'],'Donghe Bun Taitung'),
+T('15:30','Check-in Tai Dong Jin Kuai Homestay','h','bed','Euer Zuhause für zwei Nächte in Taitung, No. 391 Gengsheng Road. Frühstück inklusive.',
+ ['Ankommen, Auto parken, kurz ausruhen','Ankunftszeit vorher melden'],
+ ['Check-in 15:00–23:00'],'Tai Dong Jin Kuai Homestay Taitung'),
+T('18:30','Abendessen in Taitung','f','noodle','Taitung ist bekannt für Reis, Fisch und tropisches Obst. Ein Restaurant in der Innenstadt mit frischen lokalen Zutaten.',
+ ['Frischen Fisch und Gemüse bestellen','Früh schlafen, morgen früh geht es nach Norden'],
+ ['Alternative: ein unkompliziertes Nudelrestaurant nahe der Homestay'])
+]);
+
+D('d1023','2026-10-23','Sanxiantai, Chenggong & Zhiben','Taitung · Chenggong · Zhiben','tw','Tai Dong Jin Kuai Homestay (2. Nacht)',
+'Vormittags Küste, nachmittags heiße Quellen. Der Fischmarkt ist vormittags am lebendigsten. Taitung Forest Park bleibt als Reserve.',[
+T('08:30','Frühstück in der Homestay','f','noodle','Das Frühstück ist im Preis enthalten.',['Gut essen, der Tag ist lang'],['Alternative: lokales Frühstück in der Stadt']),
+T('09:30','Fahrt nach Chenggong','m','road','Auf Highway 11 ca. 45 Minuten nach Norden (Schätzung).',['Küste und Aussichtspunkte nutzen'],['Zusätzliche Fahrzeit ca. 1,5–2 Stunden gesamt']),
+T('10:15','★ Sanxiantai','s','bridge','Eine kleine Insel vor der Küste, die über eine lange geschwungene Bogenbrücke erreichbar ist. Auf der Insel stehen große Felsen, Wege und Aussichtspunkte.',
+ ['Über die Bogenbrücke zur Insel gehen','Die Küste und Felsen anschauen, Fotos'],
+ ['Starker Wind und Sonne','Rutschige Felsen'],'Sanxiantai Taitung'),
+T('12:00','★ Fischhafen Chenggong & Mittagessen','f','market','Der Hafen von Chenggong ist einer der wichtigsten Fischereihäfen der Ostküste. Der Fisch ist frisch und der Markt lebendig.',
+ ['Frischen Fisch (z. B. Sashimi oder gegrillt) probieren','Hafen und Boote ansehen'],
+ ['Der Markt ist vormittags am lebendigsten (nicht verifiziert), nachmittags ruhiger','Preise vor dem Kauf klären'],'Chenggong Fish Harbor'),
+T('14:30','★ Zhiben Hot Springs','s','onsen','Zhiben ist ein bekanntes Thermalquellen-Gebiet. Hotels und Badehäuser nutzen das warme Wasser, das aus den Bergen kommt.',
+ ['Ein Bad in einem Thermalbecken (Hotel oder Badehaus)','Im Anschluss entspannt spazieren gehen'],
+ ['Badehose und Handtuch mitnehmen','Regeln vor Ort klären (Badekleidung, getrennte Bereiche)','Nicht zu lange im heißen Wasser bleiben, viel trinken'],'Zhiben Hot Spring Taitung'),
+T('18:30','Abendessen nahe Zhiben','f','noodle','Ein traditionelles Restaurant mit indigener taiwanischer Küche, z. B. im Bambus gedämpfter Klebreis oder gegrilltes Fleisch.',
+ ['Klebreis im Bambus bestellen','Regionale Spezialitäten probieren'],
+ ['Alternative: Meeresfrüchte in der Innenstadt','Zurück in Taitung früh schlafen'])
+]);
+
+D('d1024','2026-10-24','Über die Südspitze nach Kenting','Taitung · Kenting','tw','Hotel dùa Kenting (1. Nacht)',
+'Eine lange Fahrt über Berge und Küste. Ankunft gegen 14:00, damit der Leuchtturm vor Sonnenuntergang (ca. 17:30) klappt.',[
+T('08:30–09:30','Check-out Homestay','h','bed','Frühstück in der Homestay und Check-out.',['Alles ins Auto packen'],['Wasser kaufen']),
+T('09:30','Fahrt Taitung → Kenting','m','road','Über Highway 9 und 26 durch die Berge und an der Südspitze entlang. Fahrtzeit ca. 3 Stunden.',
+ ['Zwischendurch Pausen an Aussichtspunkten','Tanken vorher'],
+ ['Kurvenreich, langsam fahren','Samstag mit mehr Verkehr Richtung Kenting']),
+T('13:00','Mittagessen in Kenting','f','noodle','Kenting lebt vom Meer. Ein Meeresfrüchte-Stand oder ein kleines Restaurant am Strand.',
+ ['Frischen Fisch oder Garnelen probieren'],['Alternative: kurzer Snack an einer Raststätte unterwegs']),
+T('15:00','Check-in Hotel dùa Kenting','h','bed','Ein Boutique-Hotel an der Kending Road, No. 5 Wenhua Lane. Einmal übernachten.',
+ ['Auto parken, kurz ausruhen'],['Check-in 15:00–00:00'],'Hotel dùa Kenting'),
+T('16:00','★ Eluanbi-Leuchtturm','s','lighthouse','Der südlichste Leuchtturm Taiwans wurde 1883 gebaut und trägt den Beinamen „Licht Ostasiens“. Er steht in einem Park mit Korallenfelsen.',
+ ['Den Leuchtturm und die Küstenpfade besichtigen','Sonnenuntergang (ca. 17:30) am Meer'],
+ ['Starker Wind und Sonne','Öffnungszeiten prüfen (nicht verifiziert)'],'Eluanbi Lighthouse Kenting'),
+T('18:30','★ Kenting Night Market','f','market','Der Nachtmarkt zieht sich über die Hauptstraße von Kenting, mit Urlaubsatmosphäre und unzähligen Ständen. Es gibt gegrillten Tintenfisch, Hähnchen und Cocktails.',
+ ['Hauptstraße entlang schlendern und teilen','Tintenfisch vom Grill probieren'],
+ ['Samstags sehr voll','Parken ist schwierig, zu Fuß gehen','Alternative: entspanntes Restaurant am Nanwan Beach'],'Kenting Night Market')
+]);
+
+D('d1025','2026-10-25','Nach Kaohsiung','Kenting · Kaohsiung','tw','InterContinental Kaohsiung (1. Nacht)',
+'Abfahrt bis 11:00, damit ihr dem Sonntagsverkehr entkommt. Niu Lao Da heute Abend unbedingt reservieren.',[
+T('08:30','Frühstück in Kenting','f','noodle','Ein reichhaltiges Frühstück vor der Abfahrt.',['Gut essen, eine ruhige Fahrt'],['Alternative: kurzer Bäckerei-Stopp']),
+T('11:00','Fahrt Kenting → Kaohsiung','m','road','Über Provincial Highway 26/1 und Freeway 3, ca. 2 Stunden (Schätzung).',
+ ['Check-out bis 11:00','Auf der Küstenstraße ruhig fahren'],
+ ['Sonntags kann der Rückverkehr aus Kenting dicht sein (nicht verifiziert)']),
+T('13:30','Mittagessen Sano Beef Noodle Soup','f','noodle','Rindernudelsuppe direkt am Lotus Pond mit klarer, aromatischer Kräuterbrühe.',
+ ['Rindernudeln mit Kräuterbrühe bestellen','Danach den Lotus Pond erkunden'],
+ ['Alternative: einfaches Mittagessen nahe dem Pier-2 Art Center'],'Sano Beef Noodle Soup Lotus Pond Kaohsiung'),
+T('14:30','★ Lotus Pond & Drachen- und Tigerpagode','s','pagoda','Ein See in Zuoying mit bunten Tempelanlagen. Berühmt sind die Drachen- und die Tigerpagode.',
+ ['Durch den Drachenmund hinein und durch den Tigermund hinaus (Glücksbrauch)','Die Frühlings- und Herbstpavillons und Tempel am Ufer ansehen'],
+ ['Heiß und sonnig, Wasser mitnehmen','Taschen bei Gedränge im Blick behalten'],'Lotus Pond Kaohsiung'),
+T('16:00','Check-in InterContinental Kaohsiung','h','bed','Euer Hotel für zwei Nächte, No. 33 Xinguang Road. Nicht stornierbar, schon bezahlt.',
+ ['Lichtbildausweis und Kreditkarte zeigen','Kurz ausruhen und duschen'],
+ ['Kaution 12.000 TWD wird hinterlegt (rückerstattbar)','Frühstück nicht inklusive'],'InterContinental Kaohsiung'),
+T('19:00','★ Niu Lao Da (Neil Laa)','f','noodle','Ein sehr beliebtes Hot-Pot-Restaurant, bekannt für frisch geschlachtetes, ungekühltes Rindfleisch.',
+ ['Rindfleisch-Hot-Pot bestellen und die Brühe probieren','Zeit lassen, es ist ein Erlebnis'],
+ ['Reservierung dringend empfohlen, Sonntag ist stark gefragt','Alternative: Cijin Island Seafood Street mit der Fähre (ca. 10 Min.)'],'Niu Lao Da Kaohsiung')
+]);
+
+D('d1026','2026-10-26','Fo Guang Shan, Pier-2 & Liuhe','Kaohsiung · Dashu','tw','InterContinental Kaohsiung (2. Nacht)',
+'Heute ist Montag, und Fo Guang Shan ist geöffnet (Dienstag geschlossen). Kleidung: Schultern und Knie bedecken.',[
+T('08:00','Frühstück Shaobing Yotiao','f','noodle','Ein traditioneller Frühstücksladen mit Shaobing Yotiao (Sesamfladen mit Ölgebäck und Ei) und frisch gemahlener Sojamilch.',
+ ['Sesamfladen mit Ei und warme Sojamilch bestellen','Hotelfrühstück (1.012 TWD pro Person) sparen'],
+ ['Alternative: Papaya-Milch und Onigiri vom 7-Eleven']),
+T('09:00','Fahrt nach Fo Guang Shan','m','road','Ca. 45 Minuten nach Dashu im Norden von Kaohsiung.',['Parkplatz am Besucherzentrum'],['Anfahrt früh, es wird später voll']),
+T('09:45','★ Fo Guang Shan Buddha Memorial Center','s','buddha','Das größte buddhistische Zentrum Taiwans. Über der Anlage thront eine der größten sitzenden Buddha-Bronzestatuen der Welt, dazu gehören acht Pagoden, Museen und ein Reliquienschrein.',
+ ['Die Hauptgebäude und Pagoden besichtigen','Das Museum anschauen','Ruhig spazieren und die Stille genießen'],
+ ['Laut Tourismusamt Kaohsiung montags 09:00–18:00 geöffnet (Sa/So bis 19:00), dienstags Ruhetag','Schultern und Knie bedecken','In den Hallen leise sein und nicht fotografieren, wo es verboten ist'],'Fo Guang Shan Buddha Memorial Center'),
+T('12:30','Mittagessen im Fo Guang Shan','f','noodle','Im Fo Guang Shan gibt es vegetarische Kost, wie sie in Klöstern üblich ist.',
+ ['Vegetarisches Mittagessen vor Ort probieren'],
+ ['Alternative: nach der Rückkehr Yaguan/Dougen Roasted Duck, Duck Rice Bowl']),
+T('15:30','★ Pier-2 Art Center','s','museum','Ehemalige Hafenlager (Yancheng), die zu einem Kunstareal mit Installationen, Läden und Cafés umgebaut wurden.',
+ ['Kunstinstallationen und Wandbilder anschauen','Kaffeepause in einem der Cafés'],
+ ['Reserve: Cijin Island per Fähre statt Pier-2'],'Pier-2 Art Center Kaohsiung'),
+T('19:00','★ Liuhe Night Market','f','market','Ein bekannter, weitläufiger Nachtmarkt in Kaohsiung mit Meeresfrüchte-Spießen, Rind-Gua-Bao und Papaya-Milch.',
+ ['Frische Meeresfrüchte-Spieße und Gua Bao probieren','Papaya-Milch am Ende'],
+ ['Preise vor dem Kauf prüfen, der Markt ist touristisch','Alternative: authentisches Dumpling-Restaurant in der Innenstadt'],'Liuhe Night Market Kaohsiung')
+]);
+
+D('d1027','2026-10-27','In die Berge nach Alishan','Kaohsiung · Fenchihu · Alishan (Leye)','tw','Alishan Hinoki B&B, Leye (1. Nacht)',
+'Ankunft vor Einbruch der Dunkelheit (ca. 17:30). Das B&B nimmt nur Bargeld (7.600 TWD). Heute früh schlafen, der Wecker für den Sonnenaufgang klingelt um 03:30.',[
+T('08:30','Frühstück & Check-out','h','bed','Frühstück in Kaohsiung (Hotelfrühstück nicht inklusive) und Check-out bis 12:00.',
+ ['Auto beladen','Bargeld für Alishan bereit'],['Check-out bis 12:00']),
+T('10:30','Fahrt Richtung Alishan','m','road','Über Freeway 3 und dann Provincial Highway 18 in die Berge. Die letzte Etappe ist kurvenreich. Reine Fahrzeit ca. 3,5 Stunden (Schätzung).',
+ ['Wasser, Snacks und Jacke bereit','Auf Nebel vorbereitet sein'],
+ ['Bei Dunkelheit besonders vorsichtig fahren','Bergstraßen sind langsamer als Kartenschätzung']),
+T('13:30','★ Mittag in Fenchihu','f','train','Fenchihu ist eine kleine Bergstadt an der Alishan-Waldbahn-Strecke. Bekannt ist der Bento im Metallbehälter (Bahnhofs-Lunchbox) mit Schweinekotelett und Bambussprossen.',
+ ['Bento im Original-Metallbehälter probieren','Altstadtgasse zu Fuß erkunden'],
+ ['Ob Fenchihu auf eurer Route liegt, in Google Maps prüfen','Alternative: Snack an einer Raststätte'],'Fenchihu Old Street'),
+T('ca. 16:00','Check-in Alishan Hinoki B&B','h','bed','Ein kleines B&B in Leye, Alishan Township, No. 114-1.',
+ ['Zimmer beziehen, Fleece und Stirnlampe bereitlegen','Auto abstellen'],
+ ['NUR Barzahlung: 7.600 TWD','Check-in 15:00–19:00, Ankunft vor 17:00 anpeilen'],'Alishan Hinoki B&B Leye'),
+T('18:30','Abendessen im Bergrestaurant','f','noodle','Ein lokales Restaurant in Leye bzw. Alishan mit heißer Hühnersuppe oder Eintopf aus dem Tontopf mit Berggemüse und Pilzen.',
+ ['Heiße Suppe und Tontopf-Eintopf bestellen'],
+ ['Alternative: einfaches herzhaftes Nudelgericht','Früh ins Bett, Wecker 03:30'])
+]);
+
+D('d1028','2026-10-28','Sonnenaufgang, Jiji & Sonne-Mond-See','Alishan · Jiji · Sonne-Mond-See','tw','Sun Moon Inn, Yuchi (1. Nacht)',
+'Ein langer Tag: Sonnenaufgang um ca. 06:30, Abfahrt ca. 11:00, Ankunft am See ca. 16:30. Die Einfahrt zur Unterkunft braucht eine vorab reservierte Parkmöglichkeit.',[
+T('03:30','★ Alishan-Sonnenaufgang','s','sunrise','Der berühmte Blick über das Wolkenmeer, bei dem die Sonne über den Bergen aufgeht. Der Sonnenaufgang liegt Ende Oktober bei ca. 06:25–06:30 (Tabelle der Waldbahn: Anfang Oktober 06:13–06:18, Anfang November 06:32).',
+ ['Sunrise-Zug (Zhushan-Linie) ab Alishan Station, Fahrt ca. 25 Minuten, einfach NT$ 150 (Stand 2025)','Reservierung online von 14 Tagen bis 12:00 Uhr am Vortag, für den 28.10. also ab 14.10., am Bahnhof ab 12 Tagen vorher','Die genaue Abfahrtszeit wird am Vortag um 16:30 bekannt gegeben','Warm anziehen (Fleece, Mütze) und Stirnlampe mitnehmen'],
+ ['Alishan Station liegt im Erholungsgebiet bei km 88,2 der Straße 18 auf 2.216 m (Forstbehörde). Wie weit Leye davon entfernt ist, konnte ich nicht belegen: Fahrzeit in Google Maps prüfen, eine Adresse in „Alishan Township“ liegt nicht automatisch im Gebiet','Stornierung der Reservierung kostet 10 % des Ticketpreises','Dunkle, nebelige Bergstraße, vorsichtig fahren; bei Wolken keine Sicht-Garantie'],'Alishan Sunrise Zhushan'),
+T('07:30','Frühstück & Teeplantagen','f','tea','Nach dem Sonnenaufgang ein herzhaftes Frühstück und ein Blick auf die Teeplantagen rund um Leye, wo Hochgebirgs-Oolong wächst.',
+ ['Frühstück im B&B oder in Alishan','Kleiner Spaziergang durch die Teefelder'],
+ ['Alternative: Kaffee und Snack im B&B']),
+T('bis 11:00','Check-out Alishan Hinoki B&B','h','bed','Check-out zwischen 08:00 und 11:00. Danach Abfahrt Richtung See.',['Bargeld für Zahlung, falls nötig'],['Zahlung vor Ort nur bar']),
+T('11:00','Fahrt zum Sonne-Mond-See','m','road','Bergstraßen Richtung Yuchi, ca. 2,5–3 Stunden. Unterwegs liegt Jiji.',
+ ['Route in Google Maps prüfen','Nicht zu viel Zeit verlieren'],
+ ['Bei schlechtem Wetter langsamer']),
+T('13:30','★ Jiji Street Food','f','train','Jiji ist ein Städtchen mit historischem Holzbahnhof. Es ist bekannt für Bawan (gedämpfte, dann frittierte Klebreis-Klöße mit Schwein und Bambussprossen) und über 50 Jahre altes Fruchteis am Stiel.',
+ ['Bawan probieren und am Ende die Brühe in die restliche Sauce gießen','Fruchteis (z. B. Ananas oder Erdnuss)'],
+ ['Walk-in, keine Reservierung','Alternative: einfaches Mittagessen an der Uferpromenade von Shuishe'],'Jiji Township Bawan'),
+T('16:30','Check-in Sun Moon Inn','h','bed','Eine Unterkunft in Shuishe am See, No. 216 Zhongshan Road, mit Balkon.',
+ ['Ankunftszeit melden und Parkplatz vorab reservieren','Zimmer beziehen'],
+ ['Check-in 15:30–19:00','Ohne reservierten Parkplatz wird es schwierig'],'Sun Moon Inn Yuchi'),
+T('17:15','Uferpromenade Shuishe am Abend','s','lake','Die Uferpromenade in Shuishe liegt am größten See Taiwans, mit Pier, Läden und Bergkulisse. Zum Sonnenuntergang (ca. 17:30) ist die Stimmung besonders schön.',
+ ['Am Wasser entlang spazieren','Optional die Ci-En-Pagode ansehen, falls Zeit bleibt'],
+ ['Pagode liegt höher am Hang, Zeit und Kräfte abwägen'],'Shuishe Pier Sun Moon Lake'),
+T('19:00','★ Abendessen Urn Chicken','f','noodle','Ein rustikales Familienrestaurant in der Region Yuchi. Das Hähnchen gart langsam über Holzkohle in großen Tontöpfen und wird mit Brühe, Gemüse und Maracuja-Saft serviert.',
+ ['Tonkrug-Hähnchen bestellen','Dazu Brühe und Saisongemüse'],
+ ['Keine Reservierung, Walk-in','Alternative: Fischrestaurant in Shuishe mit „President’s Fish“'],'Urn Chicken Yuchi')
+]);
+
+D('d1029','2026-10-29','Sonne-Mond-See & zurück nach Taipeh','Sonne-Mond-See · Taipeh','tw','arTree hotel, Taipeh (1. Nacht)',
+'Letzter Fahrtag. Bootstour am Vormittag, Rückgabe des Autos ca. 17:30 und dann ein großes Abschlussessen. Heute Abend packen.',[
+T('08:00','Frühstück im Sun Moon Inn','f','noodle','Das Frühstück im Sun Moon Inn oder ein lokales Frühstück am See.',['Satt essen, Packen nicht vergessen'],['Alternative: lokales Frühstück am See']),
+T('09:00','★ Bootstour auf dem Sonne-Mond-See','s','lake','Der See ist nach seiner Form benannt: eine Seite sieht aus wie eine Sonne, die andere wie ein Mond. Boote fahren zwischen den Anlegestellen Shuishe, Xuanguang-Tempel und Ita Thao.',
+ ['Rundfahrt über den See mit Blick auf die Berge','Anlegestellen und Pagoden ansehen'],
+ ['Die Lalu-Insel darf nicht betreten werden (heiliger Ort der Thao), ihr seht sie vom Boot oder vom Hügel am Xuanguang-Tempel','Das Boot (Shuishe, Xuanguang, Ita Thao) fährt laut Drittquelle etwa halbstündlich und lässt sich als Hop-on-hop-off nutzen','Bei Regen ist die Fahrt weniger schön'],'Sun Moon Lake Boat Tour Shuishe'),
+T('11:00','Check-out & Abfahrt','h','bed','Check-out bis 11:00 und Abfahrt Richtung Taipeh.',['Auto laden, Tank prüfen'],['Check-out bis 11:00']),
+T('11:00','Fahrt nach Taipeh','m','road','Über Freeway 3 und 1, ca. 3,5 Stunden (ca. 180 km).',
+ ['Mittagessen an einer der spektakulären Autobahn-Raststätten mit vielen Restaurantketten','Tanken vor der Rückgabe'],
+ ['Staus am Donnerstagnachmittag möglich','Ankunft in Taipeh ca. 14:30–15:00']),
+T('15:00','Gepäck im arTree hotel','h','bed','Euer letztes Hotel in Taipeh, No. 76 Section 3 Bade Road. Check-in ab 16:00, Frühstück inklusive.',
+ ['Gepäck bei früher Ankunft an der Rezeption abstellen','Zimmer beziehen'],
+ ['Renovierungsarbeiten täglich 08:00–18:00, Lärm möglich'],'arTree hotel Taipei'),
+T('17:30','Mietwagen-Rückgabe (Alamo)','m','road','Rückgabe am Taipei Main Station, 1F No. 3 Beiping W Rd, gleicher Ort wie die Abholung.',
+ ['Tank voll, Auto fotografieren, Schlüssel abgeben','Danach per MRT oder Taxi nach Neihu'],
+ ['Frühere Rückgabe (statt 20:00) vorher mit Alamo bestätigen','Tankregel prüfen'],'Taipei Main Station Alamo'),
+T('19:00','★ Abendessen New Baba','f','noodle','Eine der berühmtesten Rindernudelsuppen Taiwans (Niu Ba Ba, Neihu). Die „Presidential Beef Noodle Soup“ mit A6.5-Wagyu ist das Highlight, es gibt auch günstige, hervorragende Schüsseln.',
+ ['Rindernudelsuppe bestellen','Letzten Abend in Taipeh feiern'],
+ ['Alternative: Raohe Street Night Market (nahe arTree)','Öffnungszeiten prüfen (nicht verifiziert)'],'New Baba Niu Ba Ba Neihu Taipei'),
+T('21:00','Koffer packen','h','bed','Morgen geht es um 09:15 Richtung Flughafen. Der Check-in sollte um ca. 10:25 stattfinden.',
+ ['Duffle packen, Handgepäck prüfen','Medikamente und Attest griffbereit'],
+ ['Keine Fleisch- oder Obstreste','Wecker auf 07:30'])
+]);
+
+D('d1030','2026-10-30','Abreise: Taipeh → Hongkong → Doha','Taipeh · Hongkong · Doha','transit','Unterwegs, Nachtflug folgt',
+'Der Rückreisetag ist lang, aber gut geplant: Flug nach Hongkong, ca. 3,5 Stunden Layover, dann Doha und der Nachtflug nach Düsseldorf.',[
+T('08:00','Frühstück arTree','f','noodle','Hotelfrühstück im arTree inklusive.',['Satt essen, die Reise ist lang'],['Alternative: Kaffee und Eiertörtchen am Taoyuan-Flughafen']),
+T('09:15','Transfer zum Flughafen','m','train','Per MRT bis Taipei Main Station und Airport MRT Express (ca. 36 Min.) oder Taxi, gesamt ca. 60–70 Minuten.',
+ ['Gepäck vor dem Check-out holen','Airport MRT online (ca. NT$ 140 über Klook) oder am Automaten'],
+ ['Check-out formal bis 12:00, ihr fahrt vorher']),
+T('10:25','Check-in Taoyuan','m','plane','Der Check-in für den internationalen Flug sollte ca. 2 Stunden vorher stattfinden.',
+ ['Gepäck aufgeben, Boardingpass für beide Flüge erhalten','Letzte Snacks und Souvenirs'],
+ ['Durchcheck bis Düsseldorf am Schalter bestätigen','Mounjaro und CPAP im Handgepäck'],'Taoyuan International Airport Terminal 1'),
+T('12:25','Flug CX461 Taipeh → Hongkong','m','plane','Cathay Pacific, Airbus A321neo, Ankunft Hongkong 14:30.',['Fensterplatz für letzten Blick auf Taiwan'],['Hongkong-Ankunft im Transitbereich bleiben, wenn Durchcheck besteht']),
+T('14:30–18:05','Layover in Hongkong (ca. 3,5 Std.)','m','plane','Ihr wartet in Terminal 1 auf den Anschlussflug.',
+ ['Essen im Flughafen, Duty Free','Ladestationen nutzen'],
+ ['Den Transferschildern folgen, kein neuer Check-in nötig','Boarding rechtzeitig prüfen']),
+T('18:05','Flug QR817 Hongkong → Doha','m','plane','Qatar Airways, Boeing 777-300ER, Sitze 61A und 61C, Ankunft Doha 21:55.',['Schlafen und viel trinken'],['30 kg Freigepäck, Ziel Düsseldorf durchgecheckt']),
+T('21:55','Umstieg in Doha (4 Std. 45 Min.)','m','plane','Wieder im Transitbereich des Hamad International Airport.',
+ ['Ausruhen, essen, Handy laden','Zum Gate rechtzeitig gehen'],
+ ['Medikamente im Handgepäck, Attest bereit'],'Hamad International Airport Doha')
+]);
+
+D('d1031','2026-10-31','Heimflug nach Düsseldorf','Doha · Düsseldorf','transit','Zuhause',
+'Willkommen zurück. Zeitumstellung: Bei uns endete am 25.10. die Sommerzeit, der Unterschied zu Taiwan beträgt jetzt sieben Stunden.',[
+T('02:40','Flug QR087 Doha → Düsseldorf','m','plane','Qatar Airways, Boeing 787-8, Sitze 19K und 19H, Ankunft Düsseldorf 07:10.',['Schlafen','Jetlag-Tipp: tagsüber Licht, früh abends ins Bett'],['Gepäckband in Düsseldorf prüfen']),
+T('07:10','Ankunft in Düsseldorf','m','plane','Reiseende. Hongkong, Macau und Taiwan liegen hinter euch, die Erinnerungen bleiben.',
+ ['Medikamente und Attest weiter sicher verwahren','Fotos sichern, Reiseführer-Erinnerungen teilen'],
+ ['Zeitumstellung kann den Jetlag verstärken'])
+]);
+
+
+init();
+</script>
+<script>
+
+(function(){
+  var okEl=document.getElementById('offline-ok');
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').then(function(){return navigator.serviceWorker.ready}).then(function(){
+      if(okEl){okEl.style.display='block'}
+    }).catch(function(){});
+  }
+  var ua=navigator.userAgent||'';
+  var ios=/iPhone|iPad|iPod/.test(ua);
+  var standalone=window.navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches);
+  var dismissed=false;try{dismissed=localStorage.getItem('rf-pwa-note')==='1'}catch(e){}
+  var note=document.getElementById('pwa-note');
+  if(ios&&!standalone&&!dismissed&&note){
+    note.style.display='block';
+    note.querySelector('button').addEventListener('click',function(){note.style.display='none';try{localStorage.setItem('rf-pwa-note','1')}catch(e){}});
+  }
+})();
+
+</script>
+</body>
+</html>
