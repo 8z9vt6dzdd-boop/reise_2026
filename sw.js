@@ -1,6 +1,6 @@
 /* Service Worker: Offline-Speicher für den Reiseführer.
    Bei jeder inhaltlichen Änderung die Zahl in CACHE hochzählen. */
-const CACHE='reisefuehrer-v1';
+const CACHE='reisefuehrer-v2';
 const FILES=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./icon-512-maskable.png'];
 
 self.addEventListener('install',e=>{
